@@ -3,6 +3,7 @@ import { formatDate, getStrapiMedia } from '@/utils/api-helpers';
 import componentResolver from '@/utils/component-resolver';
 
 interface OwnProps {
+  // eslint-disable-next-line
   article: any;
 }
 
@@ -48,6 +49,7 @@ export default function Post(props: OwnProps) {
 
       <div className="dark:text-gray-100">
         <p>{description}</p>
+        {/* eslint-disable-next-line */}
         {article.blocks.map((section: any, index: number) => componentResolver(section, index))}
       </div>
     </article>

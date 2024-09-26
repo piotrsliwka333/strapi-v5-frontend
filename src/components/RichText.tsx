@@ -13,7 +13,7 @@ export default function RichText({ data }: RichTextProps) {
   // h1 styled in global.css by rich-text h1 style property
   return (
     <section className="rich-text my-6 dark:bg-black dark:text-gray-50 ">
-      <Markdown children={data.body} remarkPlugins={[remarkGfm]} />
+      <Markdown remarkPlugins={[remarkGfm]}>{data.body}</Markdown>
     </section>
   );
 }

@@ -6,6 +6,7 @@ import Link from 'next/link';
 import { PropsWithChildren } from 'react';
 
 interface OwnProps {
+  // eslint-disable-next-line
   articles: any[];
 }
 

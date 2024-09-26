@@ -1,12 +1,13 @@
 import { ReactElement, lazy, createElement, Suspense } from 'react';
 import Loader from '../components/Loader';
 
+// eslint-disable-next-line
 export default function componentResolver(section: any, index: number): ReactElement {
   // Component names do look like 'category.component-name' => lowercase and kebap case
   const names: string[] = section.__component.split('.');
 
   // Get category name
-  const category = names[0];
+  // const category = names[0];
 
   // Get component name
   const component = names[1];
@@ -31,6 +32,7 @@ export default function componentResolver(section: any, index: number): ReactEle
   // See https://webpack.js.org/api/module-methods/#import-1
 
   // Use react lazy loading to import the module. By convention: The file name needs to match the name of the component (what is a good idea)
+  // eslint-disable-next-line
   let module = lazy(() => import(`../components/${componentName}`));
   // let ComponentC = dynamic(() => import(`../components/${componentName}`), { ssr: false })
 

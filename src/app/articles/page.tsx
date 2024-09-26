@@ -14,15 +14,15 @@ interface Meta {
   };
 }
 
-export default function HomeRoute({ params }: { params: any }) {
+export default function HomeRoute() {
   const [meta, setMeta] = useState<Meta | undefined>();
-  const [data, setData] = useState<any>([]);
+  /* eslint-disable */
+  const [data, setData] = useState<any[]>([]);
   const [isLoading, setLoading] = useState(true);
 
   const fetchData = useCallback(async (start: number, limit: number) => {
     setLoading(true);
     try {
-      const token = process.env.NEXT_PUBLIC_STRAPI_API_TOKEN;
       const path = `/articles`;
       const urlParamsObject = {
         sort: { createdAt: 'desc' },
@@ -45,13 +45,12 @@ export default function HomeRoute({ params }: { params: any }) {
           limit: limit,
         },
       };
-      const options = { headers: { Authorization: `Bearer ${token}` } };
       const responseData = await fetchAPI(path, urlParamsObject);
-      console.log(responseData);
 
       if (start === 0) {
         setData(responseData.data);
       } else {
+        // eslint-disable-next-line
         setData((prevData: any[]) => [...prevData, ...responseData.data]);
       }
 

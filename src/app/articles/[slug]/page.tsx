@@ -2,7 +2,6 @@ import Post from '@/components/Post';
 import { fetchAPI } from '@/utils/fetch-api';
 
 async function getPostBySlug(slug: string) {
-  const token = process.env.NEXT_PUBLIC_STRAPI_API_TOKEN;
   const path = `/articles`;
   const urlParamsObject = {
     filters: { slug },
@@ -27,7 +26,6 @@ async function getPostBySlug(slug: string) {
       },
     },
   };
-  const options = { headers: { Authorization: `Bearer ${token}` } };
 
   const response = await fetchAPI(path, urlParamsObject);
   return response;

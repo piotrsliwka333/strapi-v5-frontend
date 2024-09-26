@@ -3,6 +3,7 @@ import Image from 'next/image';
 
 interface OwnProps {
   data: {
+    // eslint-disable-next-line
     file: any;
   };
 }

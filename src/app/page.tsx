@@ -1,4 +1,3 @@
-import { fetchAPI } from '@/utils/fetch-api';
 import Image from 'next/image';
 import Link from 'next/link';
 
