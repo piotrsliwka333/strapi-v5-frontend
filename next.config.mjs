@@ -21,11 +21,11 @@ const nextConfig = {
       },
       {
         protocol: 'https',
-        hostname: 'steadfast-wisdom-8b7aca22e3.strapiapp.com',
+        hostname: 'generous-leader-d581ba65b8.strapiapp.com',
       },
       {
         protocol: 'https',
-        hostname: 'steadfast-wisdom-8b7aca22e3.media.strapiapp.com',
+        hostname: 'generous-leader-d581ba65b8.media.strapiapp.com',
       },
     ],
   },
