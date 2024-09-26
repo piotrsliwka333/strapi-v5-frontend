@@ -1,9 +1,5 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  env: {
-    STRAPI_API_URL: 'http://localhost:1337',
-    NEXT_PUBLIC_PAGE_LIMIT: '6',
-  },
   reactStrictMode: false,
   images: {
     remotePatterns: [
