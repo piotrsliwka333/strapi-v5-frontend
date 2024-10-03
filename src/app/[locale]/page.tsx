@@ -1,11 +1,15 @@
+import { Link } from '@/i18n/routing';
+import { getTranslations } from 'next-intl/server';
 import Image from 'next/image';
-import Link from 'next/link';
 
-export default function Home() {
+export default async function Home({ params: { locale } }: any) {
+  const t = await getTranslations({ locale });
+
   return (
     <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
       <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
         <p>Test of process env: {process.env.TEST_1}</p>
+        {t('HomePage.title')}
         <Link href="/articles">Articles</Link>
         <Image
           className="dark:invert"

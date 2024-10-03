@@ -5,6 +5,7 @@ import Loader from '@/components/Loader';
 import PostList from '@/components/PostList';
 import PageHeader from '@/components/PageHeader';
 import { fetchAPI } from '@/utils/fetch-api';
+import { unstable_setRequestLocale } from 'next-intl/server';
 
 interface Meta {
   pagination: {

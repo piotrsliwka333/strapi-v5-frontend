@@ -1,8 +1,8 @@
 // ./frontend/src/app/[lang]/components/PostList.tsx
 
+import { Link } from '@/i18n/routing';
 import { formatDate, getStrapiMedia } from '@/utils/api-helpers';
 import Image from 'next/image';
-import Link from 'next/link';
 import { PropsWithChildren } from 'react';
 
 interface OwnProps {
