@@ -1,9 +1,9 @@
-import {LocalePrefix, defineRouting} from 'next-intl/routing';
-import {createLocalizedPathnamesNavigation, createSharedPathnamesNavigation} from 'next-intl/navigation';
+import { createLocalizedPathnamesNavigation } from 'next-intl/navigation';
+import { LocalePrefix, defineRouting } from 'next-intl/routing';
 
 export const localePrefix = 'as-needed' satisfies LocalePrefix;
 export const defaultLocale = 'en' as const;
-export const locales = ['en', 'pl'] as const;
+export const locales: string[] = ['en', 'pl'];
 
 export const routing = defineRouting({
   // A list of all locales that are supported

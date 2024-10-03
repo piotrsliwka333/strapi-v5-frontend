@@ -2,7 +2,12 @@ import { Link } from '@/i18n/routing';
 import { getTranslations } from 'next-intl/server';
 import Image from 'next/image';
 
-export default async function Home({ params: { locale } }: any) {
+interface IPageProps {
+  params: { locale: string };
+  searchParams: Record<string, string | undefined>;
+}
+
+export default async function Home({ params: { locale } }: IPageProps): Promise<JSX.Element> {
   const t = await getTranslations({ locale });
 
   return (

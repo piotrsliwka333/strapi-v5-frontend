@@ -22,7 +22,8 @@ export default function PostList(props: PropsWithChildren<OwnProps>) {
 
           return (
             <Link
-              href={`/articles/${article.slug}`}
+              // @ts-expect-error : for now commented because it follow patern from pathnames but somehow does not recognize string as [slug]. Require investigation
+              href={`/articles/${article.slug as string}`}
               key={article.id}
               className="max-w-sm mx-auto group hover:no-underline focus:no-underline dark:bg-gray-900 lg:w-[300px] xl:min-w-[375px] rounded-2xl overflow-hidden shadow-lg"
             >
