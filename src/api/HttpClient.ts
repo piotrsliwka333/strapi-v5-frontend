@@ -15,6 +15,10 @@ export class HttpClient {
     return `${this.getStrapiURL()}${url}`;
   }
 
+  static getServerOnlyCredentials(): object {
+    return { Authorization: `Bearer ${process.env.STRAPI_SERVER_ONLY_API_TOKEN}` };
+  }
+
   static async get(path: string, urlParamsObject: object = {}, options: object = {}) {
     try {
       // Merge default and user options
@@ -41,13 +45,19 @@ export class HttpClient {
     }
   }
 
-  static async post(path: string, body: Record<'data', Record<string, string | number | boolean>>) {
+  static async post(
+    path: string,
+    body: Record<'data', Record<string, string | number | boolean>>,
+    options: object = {}
+  ) {
     const requestUrl: string = this.getStrapiURL(`/api${path}`);
     try {
+      console.log(process.env.STRAPI_SERVER_ONLY_API_TOKEN);
       const response = await fetch(requestUrl, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          ...options,
         },
         body: JSON.stringify(body),
         cache: 'no-cache',
@@ -60,13 +70,18 @@ export class HttpClient {
     }
   }
 
-  static async put(path: string, body: Record<'data', Record<string, string | number | boolean>>) {
+  static async put(
+    path: string,
+    body: Record<'data', Record<string, string | number | boolean>>,
+    options: object = {}
+  ) {
     const requestUrl: string = this.getStrapiURL(`/api${path}`);
     try {
       const response = await fetch(requestUrl, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
+          ...options,
         },
         body: JSON.stringify(body),
         cache: 'no-cache',
@@ -79,11 +94,12 @@ export class HttpClient {
     }
   }
 
-  static async delete(path: string): Promise<void> {
+  static async delete(path: string, options: object = {}): Promise<void> {
     const requestUrl: string = this.getStrapiURL(`/api${path}`);
     try {
       await fetch(requestUrl, {
         method: 'DELETE',
+        ...options,
       });
     } catch (error) {
       // eslint-disable-next-line

@@ -29,7 +29,11 @@ export class NewsletterAPI {
   static create(
     payload: NewsletterPayload
   ): Promise<NewsletterCreateResponse | NewsletterCreateResponseError> {
-    return HttpClient.post(this.getUrl(), this.getPayload(payload)).then((response) =>
+    return HttpClient.post(
+      this.getUrl(),
+      this.getPayload(payload),
+      HttpClient.getServerOnlyCredentials()
+    ).then((response) =>
       HttpClient.mapResponse<NewsletterCreateResponse | NewsletterCreateResponseError>(response)
     );
   }
@@ -38,14 +42,18 @@ export class NewsletterAPI {
     id: string,
     payload: NewsletterPayload
   ): Promise<NewsletterCreateResponse | NewsletterCreateResponseError> {
-    return HttpClient.put(this.getUrl(id), this.getPayload(payload)).then((response) =>
+    return HttpClient.put(
+      this.getUrl(id),
+      this.getPayload(payload),
+      HttpClient.getServerOnlyCredentials()
+    ).then((response) =>
       HttpClient.mapResponse<NewsletterCreateResponse | NewsletterCreateResponseError>(response)
     );
   }
 
   static delete(id: string): Promise<void> {
-    return HttpClient.delete(this.getUrl(id)).then((response) =>
-      HttpClient.mapResponse<void>(response)
+    return HttpClient.delete(this.getUrl(id), HttpClient.getServerOnlyCredentials()).then(
+      (response) => HttpClient.mapResponse<void>(response)
     );
   }
 }
