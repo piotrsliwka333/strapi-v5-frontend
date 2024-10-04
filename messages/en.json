@@ -1,6 +1,40 @@
 {
+  "strapiErrors": {
+    "internalError": "Internal Error",
+    "newsletter": {
+      "emailAssignedAndConfirmed": "This email already has been assigned to newsletter and is confirmed",
+      "emailAssignedAndNotConfirmed": "This email already has been assigned to newsletter but still is not confirmed. Go to your email inbox and click confirm link"
+    }
+  },
   "HomePage": {
     "title": "Hello world!",
     "about": "Go to the about page"
+  },
+  "newsletter": {
+    "messages": {
+      "error": "The error appeared during submitting your email. Please refresh the page and try again.",
+      "success": "Confirmation link has been send into your email inbox."
+    }
+  },
+  "subscribe": {
+    "success": "Your email has been confirmed ssucessfuly. Now you will start receiving notifications.",
+    "errors": {
+      "userIdEmpty": "User id is not existing",
+      "confirmationTokenEmpty": "Confirmation token does not existing",
+      "confirmationTokenIncorrect": "Confirmation token is incorrect",
+      "emailAlreadyConfirmed": "You've already confirmed your address email.",
+      "userNotFound": "User not found",
+      "generalError": "Error appeared. Please refresh the page and try again"
+    }
+  },
+  "unsubscribe": {
+    "success": "Your email has been unsubscribed sucessfuly. Now you will stop receiving notifications.",
+    "errors": {
+      "userIdEmpty": "User id is not existing",
+      "unsubscribeTokenEmpty": "Unsubscribe token does not existing",
+      "unsubscribeTokenIncorrect": "Unsubscribe token is incorrect",
+      "notInNewsletter": "You are not in our newsletter",
+      "generalError": "Error appeared. Please refresh the page and try again"
+    }
   }
 }

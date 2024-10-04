@@ -5,6 +5,7 @@ import {
   NewsletterPayload,
 } from '@/models/Newsletter';
 import { HttpClient } from './HttpClient';
+import { SingleType } from '@/models/SingleType';
 
 export class NewsletterAPI {
   static getUrl(id?: string) {
@@ -15,9 +16,13 @@ export class NewsletterAPI {
     return payload;
   }
 
-  static findOne(id: string): Promise<NewsletterFindOneResponse | NewsletterCreateResponseError> {
+  static findOne(
+    id: string
+  ): Promise<SingleType<NewsletterFindOneResponse> | NewsletterCreateResponseError> {
     return HttpClient.get(this.getUrl(id)).then((response) =>
-      HttpClient.mapResponse<NewsletterFindOneResponse | NewsletterCreateResponseError>(response)
+      HttpClient.mapResponse<SingleType<NewsletterFindOneResponse> | NewsletterCreateResponseError>(
+        response
+      )
     );
   }
 

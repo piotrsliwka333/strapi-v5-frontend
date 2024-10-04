@@ -1,6 +1,40 @@
 {
+  "strapiErrors": {
+    "internalError": "Internal Error",
+    "newsletter": {
+      "emailAssignedAndConfirmed": "Ten adres e-mail został już przypisany do newslettera i jest potwierdzony",
+      "emailAssignedAndNotConfirmed": "Ten adres e-mail został już przypisany do newslettera, ale nadal nie jest potwierdzony. Wejdź na adresu e-mail i kliknij link zatwierdzajcy."
+    }
+  },
   "HomePage": {
     "title": "Cześć",
     "about": "Idź do homepage"
+  },
+  "newsletter": {
+    "messages": {
+      "error": "Błąd pojawił się podczas wysyłania Twojego adresu e-mail. Odśwież stronę i spróbuj ponownie.",
+      "success": "Link potwierdzający został wysłany na Twój adres e-mail."
+    }
+  },
+  "subscribe": {
+    "success": "Twój adres e-mail został pomyślnie potwierdzony. Teraz zaczniesz otrzymywać powiadomienia.",
+    "errors": {
+      "userIdEmpty": "Identyfikator użytkownika nie istnieje",
+      "confirmationTokenEmpty": "Token potwierdzający nie istnieje",
+      "confirmationTokenIncorrect": "Token potwierdzający jest niepoprawny",
+      "emailAlreadyConfirmed": "Potwierdziłeś już swój adres e-mail.",
+      "userNotFound": "Nie znaleziono użytkownika",
+      "generalError": "Wystąpił błąd. Odśwież stronę i spróbuj ponownie"
+    }
+  },
+  "unsubscribe": {
+    "success": "Twój adres e-mail został pomyślnie anulowany. Teraz przestaniesz otrzymywać powiadomienia.",
+    "errors": {
+      "userIdEmpty": "Identyfikator użytkownika nie istnieje",
+      "unsubscribeTokenEmpty": "Token anulowania subskrypcji nie istnieje",
+      "unsubscribeTokenIncorrect": "Token anulowania subskrypcji jest niepoprawny",
+      "notInNewsletter": "Nie jesteś w naszym newsletterze",
+      "generalError": "Wystąpił błąd. Odśwież stronę i spróbuj ponownie"
+    }
   }
 }

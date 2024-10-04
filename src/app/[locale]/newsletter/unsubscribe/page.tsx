@@ -7,14 +7,14 @@ export default async function UnsubscribeRoute({
   params,
 }: {
   params: { locale: string };
-  searchParams: { newsletterUserId: string | null; unsubscribeToken: string | null };
+  searchParams: { newsletterUserDocumentId: string | null; unsubscribeToken: string | null };
 }) {
-  const { newsletterUserId, unsubscribeToken } = searchParams;
+  const { newsletterUserDocumentId, unsubscribeToken } = searchParams;
   const { locale } = params;
   unstable_setRequestLocale(locale);
   const t = await getTranslations();
 
-  if (!newsletterUserId)
+  if (!newsletterUserDocumentId)
     return (
       <h1 className="container mx-auto bg-background font-bold my-16 border border-red-500 text-center p-16  rounded-xl text-red-500 text-3xl">
         {t('unsubscribe.errors.userIdEmpty')}
@@ -28,7 +28,7 @@ export default async function UnsubscribeRoute({
     );
 
   try {
-    const data = await NewsletterAPI.findOne(newsletterUserId);
+    const data = await NewsletterAPI.findOne(newsletterUserDocumentId);
     if ('error' in data && data && data.error && data.error.status === 404)
       return (
         <h1 className="container mx-auto bg-background font-bold my-16 border border-red-500 text-center p-16  rounded-xl text-red-500 text-3xl">
@@ -37,11 +37,12 @@ export default async function UnsubscribeRoute({
       );
 
     if (
-      'isConfirmed' in data &&
-      data.id === +newsletterUserId &&
-      data.unsubscribeToken === unsubscribeToken
+      data &&
+      data.data &&
+      data.data.documentId === newsletterUserDocumentId &&
+      data.data.unsubscribeToken === unsubscribeToken
     ) {
-      await unsubscribeNewsletterService(data.id.toString());
+      await unsubscribeNewsletterService(data.data.documentId);
       return (
         <h1 className="container mx-auto bg-background font-bold my-16 border border-green-600 text-center p-16  rounded-xl text-green-600 text-3xl">
           {t('unsubscribe.success')}

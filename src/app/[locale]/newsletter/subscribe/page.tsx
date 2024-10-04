@@ -7,14 +7,14 @@ export default async function SubscribeRoute({
   params,
 }: {
   params: { locale: string };
-  searchParams: { newsletterUserId: string | null; confirmationToken: string | null };
+  searchParams: { newsletterUserDocumentId: string | null; confirmationToken: string | null };
 }) {
-  const { newsletterUserId, confirmationToken } = searchParams;
+  const { newsletterUserDocumentId, confirmationToken } = searchParams;
   const { locale } = params;
   unstable_setRequestLocale(locale);
   const t = await getTranslations();
 
-  if (!newsletterUserId)
+  if (!newsletterUserDocumentId)
     return (
       <h1 className="container mx-auto bg-background font-bold my-16 border border-red-500 text-center p-16  rounded-xl text-red-500 text-3xl">
         {t('subscribe.errors.userIdEmpty')}
@@ -28,8 +28,8 @@ export default async function SubscribeRoute({
     );
 
   try {
-    const data = await NewsletterAPI.findOne(newsletterUserId);
-    if ('isConfirmed' in data && data.isConfirmed)
+    const data = await NewsletterAPI.findOne(newsletterUserDocumentId);
+    if (data && data.data && data.data.isConfirmed)
       return (
         <h1 className="container mx-auto bg-background font-bold my-16 border border-red-500 text-center p-16  rounded-xl text-red-500 text-3xl">
           {t('subscribe.errors.emailAlreadyConfirmed')}
@@ -43,14 +43,15 @@ export default async function SubscribeRoute({
       );
 
     if (
-      'isConfirmed' in data &&
-      data.id === +newsletterUserId &&
-      data.confirmationToken === confirmationToken
+      data &&
+      data.data &&
+      data.data.documentId === newsletterUserDocumentId &&
+      data.data.confirmationToken === confirmationToken
     ) {
-      await confirmUserNewsletterSubscriptionService(data.id.toString(), {
-        email: data.email,
-        unsubscribeToken: data.unsubscribeToken,
-        confirmationToken: data.confirmationToken,
+      await confirmUserNewsletterSubscriptionService(data.data.documentId, {
+        email: data.data.email,
+        unsubscribeToken: data.data.unsubscribeToken,
+        confirmationToken: data.data.confirmationToken,
         isConfirmed: true,
       });
 

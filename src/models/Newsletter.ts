@@ -1,13 +1,14 @@
 export interface NewsletterPayload {
   data: {
-    email: string,
-    unsubscribeToken: string,
-    confirmationToken: string,
-    isConfirmed: boolean,
-  }
+    email: string;
+    unsubscribeToken: string;
+    confirmationToken: string;
+    isConfirmed: boolean;
+  };
 }
 
 export interface NewsletterFindOneResponse {
+  documentId: string;
   id: number;
   email: string;
   unsubscribeToken: string;
@@ -17,6 +18,7 @@ export interface NewsletterFindOneResponse {
   updated_by: null;
   created_at: string;
   updated_at: string;
+  locale: null;
 }
 
 export interface NewsletterCreateResponse {
@@ -32,12 +34,12 @@ export interface NewsletterCreateResponse {
 }
 
 export interface NewsletterCreateResponseError {
-  data: null,
+  data: null;
   error: {
-    status: number,
-    name: string,
-    message: string,
+    status: number;
+    name: string;
+    message: string;
     // eslint-disable-next-line
-    details: { errors: any[] }
-  }
-};
+    details: { errors: any[] };
+  };
+}
