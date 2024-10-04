@@ -1,11 +1,13 @@
 'use client';
 
 import { Link } from '@/i18n/routing';
-import { Header as HeaderResponseType, MainLink, NestedLink } from '@/models/Header';
+import { Header as HeaderResponseType } from '@/models/Header';
 import Image from 'next/image';
 import { useState } from 'react';
 import LocaleSwitcher from '@/components/LocaleSwitcher';
 import { HttpClient } from '@/api/HttpClient';
+import { MainLink } from '@/models/common/MainLink';
+import { Link as LinkType } from '@/models/common/Link';
 
 interface OwnProps {
   header: HeaderResponseType;
@@ -72,6 +74,7 @@ export function Header({ header }: Readonly<OwnProps>) {
               <li className="mb-4">
                 <Link
                   className="btn-primary flex items-center w-fit"
+                  // eslint-disable-next-line
                   href={header.button.url as any}
                   target="_blank"
                 >
@@ -95,16 +98,18 @@ export function Header({ header }: Readonly<OwnProps>) {
               </li>
               {header.mainLinks.map((mainLink: MainLink) => (
                 <li key={mainLink.id} className="mb-2">
+                  {/* eslint-disable-next-line */}
                   <Link href={mainLink.url as any} className="mobile-nav-link text-lg">
                     <span>{mainLink.text}</span>
                   </Link>
                   {mainLink.nestedLinks.length > 0 && (
                     <div className="pl-8">
                       <ul>
-                        {mainLink.nestedLinks.map((nestedLink: NestedLink) => (
+                        {mainLink.nestedLinks.map((nestedLink: LinkType) => (
                           <li key={nestedLink.id}>
                             <Link
                               className="mobile-nav-link font-light"
+                              // eslint-disable-next-line
                               href={nestedLink.url as any}
                             >
                               {nestedLink.text}
@@ -138,6 +143,7 @@ export function Header({ header }: Readonly<OwnProps>) {
               <ul className="flex items-center h-full">
                 {header.mainLinks.map((mainLink: MainLink) => (
                   <li key={mainLink.id} className="h-full">
+                    {/* eslint-disable-next-line */}
                     <Link className="nav-link" href={mainLink.url as any}>
                       <span className="block relative">
                         {mainLink.text}
@@ -171,8 +177,9 @@ export function Header({ header }: Readonly<OwnProps>) {
                     {mainLink.nestedLinks.length > 0 && (
                       <div className="sub-menu__wrapper">
                         <ul className="sub-menu">
-                          {mainLink.nestedLinks.map((nestedLink: NestedLink) => (
+                          {mainLink.nestedLinks.map((nestedLink: LinkType) => (
                             <li key={nestedLink.id}>
+                              {/* eslint-disable-next-line */}
                               <Link className="nav-link p-6" href={nestedLink.url as any}>
                                 {nestedLink.text}
                               </Link>
@@ -187,10 +194,10 @@ export function Header({ header }: Readonly<OwnProps>) {
             </nav>
           </div>
           <div className="flex items-center">
-            {/* <ToggleThemeButton /> */}
             <LocaleSwitcher />
             <Link
               className="btn-primary flex items-center"
+              // eslint-disable-next-line
               href={header.button.url as any}
               target="_blank"
             >

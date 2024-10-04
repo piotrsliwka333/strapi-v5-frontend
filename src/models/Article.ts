@@ -9,6 +9,7 @@ export interface Article {
     id: 8;
     url: string;
   };
+  // eslint-disable-next-line
   blocks: any[];
   createdAt: string;
   description: string;

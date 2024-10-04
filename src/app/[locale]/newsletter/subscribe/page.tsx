@@ -65,7 +65,8 @@ export default async function SubscribeRoute({
         {t('subscribe.errors.confirmationTokenIncorrect')}
       </h1>
     );
-  } catch (error: any) {
+    // eslint-disable-next-line
+  } catch (error) {
     return (
       <h1 className="container mx-auto bg-background font-bold my-16 border border-red-500 text-center p-16  rounded-xl text-red-500 text-3xl">
         {t('subscribe.errors.generalError')}

@@ -53,6 +53,7 @@ export default async function UnsubscribeRoute({
         {t('unsubscribe.errors.unsubscribeTokenIncorrect')}
       </h1>
     );
+    // eslint-disable-next-line
   } catch (error: any) {
     return (
       <h1 className="container mx-auto bg-background font-bold my-16 border border-red-500 text-center p-16  rounded-xl text-red-500 text-3xl">

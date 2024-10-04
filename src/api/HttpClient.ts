@@ -56,6 +56,7 @@ export class HttpClient {
     
         return response.json();
       } catch (error) {
+        // eslint-disable-next-line
         throw new Error(error as any);
       }
     }
@@ -75,6 +76,7 @@ export class HttpClient {
     
         return response.json();
       } catch (error) {
+        // eslint-disable-next-line
         throw new Error(error as any);
       }
     }
@@ -93,6 +95,7 @@ export class HttpClient {
     
         return response.json();
       } catch (error) {
+        // eslint-disable-next-line
         throw new Error(error as any);
       }
     }

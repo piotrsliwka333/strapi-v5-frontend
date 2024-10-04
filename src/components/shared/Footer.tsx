@@ -1,5 +1,5 @@
 import { HttpClient } from '@/api/HttpClient';
-import { Footer, SocialLink } from '@/models/Footer';
+import { Footer as FooterType, SocialLink } from '@/models/Footer';
 import Image from 'next/image';
 import { Newsletter } from '../Newsletter';
 import { Image as ImageType } from '@/models/common/Image';
@@ -9,7 +9,7 @@ import { Link } from '@/i18n/routing';
 import { Link as LinkType } from '@/models/common/Link';
 
 interface OwnProps {
-  footer: Footer;
+  footer: FooterType;
 }
 
 export function Footer({ footer }: Readonly<OwnProps>) {
@@ -40,6 +40,7 @@ export function Footer({ footer }: Readonly<OwnProps>) {
         <ul className="grid gap-8 sm:justify-center sm:grid-cols-2 xl:grid-cols-3 md:basis-3/5 md:pl-8 xl:pl-16">
           {footer.mainLinks.map((mainLink: MainLink) => (
             <li key={mainLink.id} className="font-medium">
+              {/* eslint-disable-next-line */}
               <Link href={mainLink.url as any} className="footer-nav-link block mb-2">
                 <span>{mainLink.text}</span>
               </Link>
@@ -48,6 +49,7 @@ export function Footer({ footer }: Readonly<OwnProps>) {
                   {mainLink.nestedLinks.map((nestedLink: LinkType) => (
                     <li key={nestedLink.id}>
                       <Link
+                        // eslint-disable-next-line
                         href={nestedLink.url as any}
                         className="font-light block footer-nav-link"
                       >
@@ -61,12 +63,14 @@ export function Footer({ footer }: Readonly<OwnProps>) {
           ))}
           <li key={'contact'}>
             <Link
+              // eslint-disable-next-line
               href={footer.contact.link.url as any}
               className="font-medium footer-nav-link block mb-2"
             >
               <span>{footer.contact.link.text}</span>
             </Link>
             <Link
+              // eslint-disable-next-line
               href={`mailto:${footer.contact.email}` as any}
               className="font-light footer-nav-link flex items-center group mb-2"
             >
@@ -85,6 +89,7 @@ export function Footer({ footer }: Readonly<OwnProps>) {
               <span className="ml-2 block break-all">{footer.contact.email}</span>
             </Link>
             <Link
+              // eslint-disable-next-line
               href={`tel:${footer.contact.phoneNumber}` as any}
               className="font-light footer-nav-link flex items-center group mb-3"
             >
@@ -109,6 +114,7 @@ export function Footer({ footer }: Readonly<OwnProps>) {
                   <li key={socialLink.id}>
                     <Link
                       target="_blank"
+                      // eslint-disable-next-line
                       href={socialLink.url as any}
                       className="p-2.5 block footer-nav-link group"
                     >

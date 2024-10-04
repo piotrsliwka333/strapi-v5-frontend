@@ -1,7 +1,5 @@
-import { Article } from "@/models/Article";
-import { HttpClient } from "./HttpClient";
-import { CollectionType } from "@/models/CollectionType";
 import { NewsletterCreateResponse, NewsletterCreateResponseError, NewsletterFindOneResponse, NewsletterPayload } from "@/models/Newsletter";
+import { HttpClient } from "./HttpClient";
 
 export class NewsletterAPI {
 

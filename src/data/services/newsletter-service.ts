@@ -20,6 +20,7 @@ export async function subscribeToNewsletterService(userData: SubscribeToNewslett
   try {
     return NewsletterAPI.create(payload)
   } catch (error) {
+    // eslint-disable-next-line
     throw new Error(error as any);
   }
 }
@@ -39,6 +40,7 @@ export async function confirmUserNewsletterSubscriptionService(
   try {
     return NewsletterAPI.update(id, {data: userData })
   } catch (error) {
+    // eslint-disable-next-line
     throw new Error(error as any);
   }
 }
@@ -47,6 +49,7 @@ export async function unsubscribeNewsletterService(id: string) {
   try {
     return NewsletterAPI.delete(id)
   } catch (error) {
+    {/* eslint-disable-next-line */}
     throw new Error(error as any);
   }
 }

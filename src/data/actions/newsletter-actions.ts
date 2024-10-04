@@ -8,6 +8,7 @@ const schema = z.object({
   }),
 });
 
+// eslint-disable-next-line
 export async function subscribeNewsletterAction(prevState: any, formData: FormData) {
   const validatedFields = schema.safeParse({
     email: formData.get('email'),

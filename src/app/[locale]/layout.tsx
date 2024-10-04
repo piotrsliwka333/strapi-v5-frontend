@@ -1,12 +1,10 @@
-import LocaleSwitcher from '@/components/LocaleSwitcher';
-import { Link } from '@/i18n/routing';
+import { GlobalConfigAPI } from '@/api/GlobalConfigAPI';
+import { Footer } from '@/components/shared/Footer';
+import { Header } from '@/components/shared/Header';
 import type { Metadata } from 'next';
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages } from 'next-intl/server';
 import './globals.css';
-import { Header } from '@/components/shared/Header';
-import { GlobalConfigAPI } from '@/api/GlobalConfigAPI';
-import { Footer } from '@/components/shared/Footer';
 
 export const metadata: Metadata = {
   title: 'Create Next App',
