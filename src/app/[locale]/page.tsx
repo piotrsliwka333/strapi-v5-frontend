@@ -11,11 +11,11 @@ export default async function Home({ params: { locale } }: IPageProps): Promise<
   const t = await getTranslations({ locale });
 
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
+    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
       <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
         <p>Test of process env: {process.env.TEST_1}</p>
         {t('HomePage.title')}
-        <Link href="/articles">Articles</Link>
+        <Link href="/blog">Blog</Link>
         <Image
           className="dark:invert"
           src="https://nextjs.org/icons/next.svg"

@@ -11,13 +11,13 @@ export const routing = defineRouting({
   localePrefix,
   pathnames: {
     '/': '/',
-    '/articles': {
-      en: '/articles',
-      pl: "/artykuły"
+    '/blog': {
+      en: '/blog',
+      pl: "/blog"
     },
-    '/articles/[slug]': {
-      en: '/articles/[slug]',
-      pl: "/artykuły/[slug]"
+    '/blog/articles/[slug]': {
+      en: '/blog/articles/[slug]',
+      pl: "/blog/artykuły/[slug]"
     }
   },
   // Used when no locale matches

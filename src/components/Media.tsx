@@ -1,4 +1,4 @@
-import { getStrapiMedia } from '@/utils/api-helpers';
+import { HttpClient } from '@/api/HttpClient';
 import Image from 'next/image';
 
 interface OwnProps {
@@ -10,7 +10,7 @@ interface OwnProps {
 
 export default function Media(props: OwnProps) {
   const { data } = props;
-  const imgUrl = getStrapiMedia(data.file.url);
+  const imgUrl = HttpClient.getStrapiMedia(data.file.url);
   return (
     <div className="flex items-center justify-center my-6 lg:mt-0 h-72 sm:h-80 lg:h-96 xl:h-112 2xl:h-128">
       <Image

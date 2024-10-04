@@ -1,6 +1,7 @@
 import Image from 'next/image';
-import { formatDate, getStrapiMedia } from '@/utils/api-helpers';
 import componentResolver from '@/utils/component-resolver';
+import { HttpClient } from '@/api/HttpClient';
+import { formatDate } from '@/utils/helpers';
 
 interface OwnProps {
   // eslint-disable-next-line
@@ -10,9 +11,8 @@ interface OwnProps {
 export default function Post(props: OwnProps) {
   const { article } = props;
   const { title, description, publishedAt, cover, author } = article;
-  console.log(cover);
-  const imageUrl = getStrapiMedia(cover.url);
-  const authorImgUrl = getStrapiMedia(author.avatar.url);
+  const imageUrl = HttpClient.getStrapiMedia(cover.url);
+  const authorImgUrl = HttpClient.getStrapiMedia(author.avatar.url);
 
   return (
     <article className="space-y-8 dark:bg-black dark:text-gray-50">

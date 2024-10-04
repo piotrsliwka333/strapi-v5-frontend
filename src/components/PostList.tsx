@@ -1,13 +1,13 @@
-// ./frontend/src/app/[lang]/components/PostList.tsx
-
+import { HttpClient } from '@/api/HttpClient';
 import { Link } from '@/i18n/routing';
-import { formatDate, getStrapiMedia } from '@/utils/api-helpers';
+import { Article } from '@/models/Article';
+import { formatDate } from '@/utils/helpers';
 import Image from 'next/image';
 import { PropsWithChildren } from 'react';
 
 interface OwnProps {
   // eslint-disable-next-line
-  articles: any[];
+  articles: Article[];
 }
 
 export default function PostList(props: PropsWithChildren<OwnProps>) {
@@ -16,14 +16,14 @@ export default function PostList(props: PropsWithChildren<OwnProps>) {
     <section className="container p-6 mx-auto space-y-6 sm:space-y-12">
       <div className="grid justify-center grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {articles.map((article) => {
-          const imageUrl = getStrapiMedia(article.cover.url);
+          const imageUrl = HttpClient.getStrapiMedia(article.cover.url);
 
-          const avatarUrl = getStrapiMedia(article.author.avatar.url);
+          const avatarUrl = HttpClient.getStrapiMedia(article.author.avatar.url);
 
           return (
             <Link
               // @ts-expect-error : for now commented because it follow patern from pathnames but somehow does not recognize string as [slug]. Require investigation
-              href={`/articles/${article.slug as string}`}
+              href={`/blog/articles/${article.slug as string}`}
               key={article.id}
               className="max-w-sm mx-auto group hover:no-underline focus:no-underline dark:bg-gray-900 lg:w-[300px] xl:min-w-[375px] rounded-2xl overflow-hidden shadow-lg"
             >

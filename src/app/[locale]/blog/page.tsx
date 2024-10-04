@@ -1,10 +1,10 @@
 'use client';
 import { useCallback, useEffect, useState } from 'react';
 
+import { ArticlesAPI } from '@/api/ArticlesAPI';
 import Loader from '@/components/Loader';
 import PageHeader from '@/components/PageHeader';
 import PostList from '@/components/PostList';
-import { fetchAPI } from '@/utils/fetch-api';
 
 interface Meta {
   pagination: {
@@ -14,7 +14,8 @@ interface Meta {
   };
 }
 
-export default function HomeRoute() {
+export default function BlogRoute({ params }: { params: { locale: string } }) {
+  const { locale } = params;
   const [meta, setMeta] = useState<Meta | undefined>();
   /* eslint-disable */
   const [data, setData] = useState<any[]>([]);
@@ -23,30 +24,7 @@ export default function HomeRoute() {
   const fetchData = useCallback(async (start: number, limit: number) => {
     setLoading(true);
     try {
-      const path = `/articles`;
-      const urlParamsObject = {
-        sort: { createdAt: 'desc' },
-        populate: {
-          cover: { fields: ['url'] },
-          category: { populate: '*' },
-          author: {
-            populate: '*',
-          },
-          blocks: {
-            on: {
-              'shared.media': {
-                populate: '*',
-              },
-            },
-          },
-        },
-        pagination: {
-          start: start,
-          limit: limit,
-        },
-      };
-      const responseData = await fetchAPI(path, urlParamsObject);
-
+      const responseData = await ArticlesAPI.findMany(locale, start, limit);
       if (start === 0) {
         setData(responseData.data);
       } else {
