@@ -79,7 +79,7 @@ export class HttpClient {
     }
   }
 
-  static async delete(path: string) {
+  static async delete(path: string): Promise<void> {
     const requestUrl: string = this.getStrapiURL(`/api${path}`);
     try {
       await fetch(requestUrl, {

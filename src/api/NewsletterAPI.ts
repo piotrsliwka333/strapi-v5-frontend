@@ -43,9 +43,9 @@ export class NewsletterAPI {
     );
   }
 
-  static delete(id: string): Promise<NewsletterCreateResponse | NewsletterCreateResponseError> {
+  static delete(id: string): Promise<void> {
     return HttpClient.delete(this.getUrl(id)).then((response) =>
-      HttpClient.mapResponse<NewsletterCreateResponse | NewsletterCreateResponseError>(response)
+      HttpClient.mapResponse<void>(response)
     );
   }
 }
