@@ -10,7 +10,6 @@ interface OffersProps {
 }
 
 export default function Offers({ data }: OffersProps) {
-  console.log(data);
   return (
     <section className=" py-12 lg:py-20">
       <div className="bg-secondary pt-24 pb-36 sm:pb-56 lg:pb-96 relative">
