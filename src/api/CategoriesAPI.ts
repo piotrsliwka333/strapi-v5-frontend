@@ -1,8 +1,7 @@
-import { CollectionType } from '@/models/CollectionType';
-import { Page, PageFindManyResponseError } from '@/models/Page';
-import { HttpClient } from './HttpClient';
 import { Category } from '@/models/Category';
+import { CollectionType } from '@/models/CollectionType';
 import { ErrorAPI } from '@/models/ErrorAPI';
+import { HttpClient } from './HttpClient';
 
 export class CategoriesAPI {
   static getUrl() {

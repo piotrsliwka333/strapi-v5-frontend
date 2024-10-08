@@ -6,7 +6,6 @@ import Image from 'next/image';
 import { PropsWithChildren } from 'react';
 
 interface OwnProps {
-  // eslint-disable-next-line
   articles: Article[];
 }
 
@@ -17,8 +16,6 @@ export default function PostList(props: PropsWithChildren<OwnProps>) {
       <div className="grid justify-center grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {articles.map((article) => {
           const imageUrl = HttpClient.getStrapiMedia(article.cover.url);
-
-          const avatarUrl = HttpClient.getStrapiMedia(article.author.avatar.url);
 
           return (
             <Link
@@ -36,13 +33,14 @@ export default function PostList(props: PropsWithChildren<OwnProps>) {
                   src={imageUrl}
                 />
               )}
+
               <div className="p-6 space-y-2 relative">
-                {avatarUrl && (
+                {article.author && (
                   <Image
                     alt="avatar"
                     width="80"
                     height="80"
-                    src={avatarUrl}
+                    src={HttpClient.getStrapiMedia(article.author.avatar.url)}
                     className="rounded-full h-16 w-16 object-cover absolute -top-8 right-4"
                   />
                 )}

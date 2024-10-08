@@ -36,6 +36,7 @@ export default function ArticleSelect({
             return (
               <Link
                 key={category.id}
+                // eslint-disable-next-line
                 href={`/blog?category=${category.slug}` as any}
                 className={selectedFilter(category.slug, params.category)}
               >
@@ -57,6 +58,7 @@ export default function ArticleSelect({
                 <li key={article.id}>
                   <Link
                     rel="noopener noreferrer"
+                    // eslint-disable-next-line
                     href={`/blog/articles/${article.slug}` as any}
                     className={`${
                       params.slug === article.slug && 'text-textPrimary'
