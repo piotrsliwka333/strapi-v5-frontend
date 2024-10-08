@@ -6,9 +6,11 @@
       "emailAssignedAndNotConfirmed": "Ten adres e-mail został już przypisany do newslettera, ale nadal nie jest potwierdzony. Wejdź na adresu e-mail i kliknij link zatwierdzajcy."
     }
   },
-  "HomePage": {
-    "title": "Cześć",
-    "about": "Idź do homepage"
+  "shared": {
+    "buttons": {
+      "backToHomePage": "Wróć na stronę główną",
+      "loadPosts": "Załaduj więcej postów ..."
+    }
   },
   "newsletter": {
     "messages": {
@@ -44,5 +46,8 @@
       "categoryFilterTitle": "Szukaj przez kategorie",
       "otherPosts": "Inne posty, które mogą Ci się spodobać"
     }
+  },
+  "notFound": {
+    "title": "Przepraszamy, strona, której szukasz nie została znaleziona"
   }
 }

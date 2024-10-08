@@ -6,9 +6,11 @@
       "emailAssignedAndNotConfirmed": "This email already has been assigned to newsletter but still is not confirmed. Go to your email inbox and click confirm link"
     }
   },
-  "HomePage": {
-    "title": "Hello world!",
-    "about": "Go to the about page"
+  "shared": {
+    "buttons": {
+      "backToHomePage": "Back To Homepage",
+      "loadPosts": "Load more posts ..."
+    }
   },
   "newsletter": {
     "messages": {
@@ -44,5 +46,8 @@
       "categoryFilterTitle": "Browse By Category",
       "otherPosts": "Other Posts You May Like"
     }
+  },
+  "notFound": {
+    "title": "Sorry the page you are looking for was not found"
   }
 }
