@@ -36,5 +36,13 @@
       "notInNewsletter": "You are not in our newsletter",
       "generalError": "Error appeared. Please refresh the page and try again"
     }
+  },
+  "blog": {
+    "title": "Our Blog",
+    "description": "Checkout our articles",
+    "article": {
+      "categoryFilterTitle": "Browse By Category",
+      "otherPosts": "Other Posts You May Like"
+    }
   }
 }

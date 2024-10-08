@@ -1,14 +1,11 @@
-import { Author } from "./Author";
-import { Category } from "./Category";
+import { Author } from './Author';
+import { Category } from './Category';
+import { Image } from './common/Image';
 
 export interface Article {
-  author: Author;
+  author: Author | null;
   category: Category;
-  cover: {
-    documentId: string;
-    id: 8;
-    url: string;
-  };
+  cover: Image;
   // eslint-disable-next-line
   blocks: any[];
   createdAt: string;

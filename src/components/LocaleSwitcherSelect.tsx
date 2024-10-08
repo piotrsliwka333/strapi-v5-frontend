@@ -1,5 +1,4 @@
 'use client';
-
 import { usePathname, useRouter } from '@/i18n/routing';
 import { useParams } from 'next/navigation';
 import { ChangeEvent, ReactNode, useTransition } from 'react';

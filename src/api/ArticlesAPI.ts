@@ -11,7 +11,7 @@ export class ArticlesAPI {
     locale: string,
     start: number,
     limit: number,
-    filters?: Record<string, string>
+    filters?: Record<string, string | Record<string, string>>
   ) {
     if (filters)
       return {
@@ -19,14 +19,20 @@ export class ArticlesAPI {
         sort: { createdAt: 'desc' },
         locale,
         populate: {
-          cover: { fields: ['url'] },
+          cover: { populate: '*' },
           category: { populate: '*' },
           author: {
             populate: '*',
           },
           blocks: {
             on: {
-              'shared.media': {
+              'article-shared.media': {
+                populate: '*',
+              },
+              'article-shared.rich-text': {
+                populate: '*',
+              },
+              'article-shared.cta-command-line': {
                 populate: '*',
               },
             },
@@ -42,14 +48,17 @@ export class ArticlesAPI {
       sort: { createdAt: 'desc' },
       locale,
       populate: {
-        cover: { fields: ['url'] },
+        cover: { populate: '*' },
         category: { populate: '*' },
         author: {
           populate: '*',
         },
         blocks: {
           on: {
-            'shared.media': {
+            'article-shared.media': {
+              populate: '*',
+            },
+            'article-shared.rich-text': {
               populate: '*',
             },
           },
@@ -66,7 +75,7 @@ export class ArticlesAPI {
     locale: string,
     start: number,
     limit: number,
-    filters?: Record<string, string>
+    filters?: Record<string, string | Record<string, string>>
   ): Promise<CollectionType<Article>> {
     return HttpClient.get(this.getUrl(), this.getParamsObject(locale, start, limit, filters)).then(
       (response) => HttpClient.mapResponse<CollectionType<Article>>(response)

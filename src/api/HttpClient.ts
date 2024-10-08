@@ -52,7 +52,6 @@ export class HttpClient {
   ) {
     const requestUrl: string = this.getStrapiURL(`/api${path}`);
     try {
-      console.log(process.env.STRAPI_SERVER_ONLY_API_TOKEN);
       const response = await fetch(requestUrl, {
         method: 'POST',
         headers: {

@@ -26,33 +26,6 @@ interface ClientsProps {
   };
 }
 
-// export default function Companies({ data }: CompaniesProps) {
-//   console.log(data);
-//   return (
-//     <div className="slide-container">
-//       <Fade>
-//         {data.companies.map((company: Company, index) => {
-//           const imageUrl = getStrapiMedia(company.logo.data.attributes.url);
-//           return (
-//             <div key={index}>
-//               {imageUrl && (
-//                 <Image
-//                   priority
-//                   className="w-full h-96 object-cover rounded-lg"
-//                   height={50}
-//                   width={150}
-//                   alt="alt text"
-//                   src={imageUrl}
-//                 />
-//               )}
-//             </div>
-//           );
-//         })}
-//       </Fade>
-//     </div>
-//   );
-// }
-
 export default function Clients({ data }: ClientsProps) {
   return (
     <div className="py-12 lg:py-20">

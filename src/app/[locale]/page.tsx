@@ -6,7 +6,6 @@ export default async function RootPageRoute({ params }: { params: { locale: stri
   const { locale } = params;
   try {
     const pages = await PagesAPI.findMany(locale, { slug: 'home' });
-    console.log(pages);
     if (pages && 'error' in pages)
       return (
         <div>

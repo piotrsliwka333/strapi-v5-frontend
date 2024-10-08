@@ -14,31 +14,47 @@ interface Meta {
   };
 }
 
-export default function BlogRoute({ params }: { params: { locale: string } }) {
+export default function BlogRoute({
+  params,
+  searchParams,
+}: {
+  params: { locale: string };
+  searchParams: { category?: string };
+}) {
   const { locale } = params;
   const [meta, setMeta] = useState<Meta | undefined>();
   /* eslint-disable */
   const [data, setData] = useState<any[]>([]);
   const [isLoading, setLoading] = useState(true);
 
-  const fetchData = useCallback(async (start: number, limit: number) => {
-    setLoading(true);
-    try {
-      const responseData = await ArticlesAPI.findMany(locale, start, limit);
-      if (start === 0) {
-        setData(responseData.data);
-      } else {
-        // eslint-disable-next-line
-        setData((prevData: any[]) => [...prevData, ...responseData.data]);
-      }
+  const fetchData = useCallback(
+    async (start: number, limit: number) => {
+      setLoading(true);
+      try {
+        const responseData = await ArticlesAPI.findMany(
+          locale,
+          start,
+          limit,
+          searchParams && searchParams.category
+            ? { category: { slug: searchParams.category } }
+            : undefined
+        );
+        if (start === 0) {
+          setData(responseData.data);
+        } else {
+          // eslint-disable-next-line
+          setData((prevData: any[]) => [...prevData, ...responseData.data]);
+        }
 
-      setMeta(responseData.meta);
-    } catch (error) {
-      console.error(error);
-    } finally {
-      setLoading(false);
-    }
-  }, []);
+        setMeta(responseData.meta);
+      } catch (error) {
+        console.error(error);
+      } finally {
+        setLoading(false);
+      }
+    },
+    [searchParams.category]
+  );
 
   function loadMorePosts(): void {
     const nextPosts = meta!.pagination.start + meta!.pagination.limit;

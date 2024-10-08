@@ -36,5 +36,13 @@
       "notInNewsletter": "Nie jesteś w naszym newsletterze",
       "generalError": "Wystąpił błąd. Odśwież stronę i spróbuj ponownie"
     }
+  },
+  "blog": {
+    "title": "Nasz Blog",
+    "description": "Sprawdź nasze artykuły",
+    "article": {
+      "categoryFilterTitle": "Szukaj przez kategorie",
+      "otherPosts": "Inne posty, które mogą Ci się spodobać"
+    }
   }
 }
