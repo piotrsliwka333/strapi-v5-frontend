@@ -5,7 +5,7 @@ import Loader from '../components/Loader';
 export default function componentResolver(section: any, index: number): ReactElement {
   // Component names do look like 'category.component-name' => lowercase and kebap case
   const names: string[] = section.__component.split('.');
-
+  console.log(names);
   // Get category name
   // const category = names[0];
 

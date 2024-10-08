@@ -26,8 +26,8 @@ export class HttpClient {
         next: { revalidate: 60 },
         headers: {
           'Content-Type': 'application/json',
+          ...options,
         },
-        ...options,
       };
 
       // Build request URL
