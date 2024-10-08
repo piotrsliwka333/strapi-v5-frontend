@@ -80,18 +80,29 @@ export class PagesAPI {
               populate: {
                 fields: ['title', 'videoUrl'],
                 offers: {
-                  populate: '*',
+                  populate: {
+                    fields: ['title', 'description'],
+                    icon: {
+                      populate: '*',
+                    },
+                  },
                 },
-                // that's weird because that population crash the whole app
-                // but it seems to properly reflect the data inside elements - offer
-                // maybe right now populate: "*" is enough to populate everything in some component alone
-                // offers: {
-                //   populate: {
-                //     fields: ['title', 'description'],
-                //     icon: { populate: '*' },
-                //   },
-                // },
               },
+              // populate: {
+              //   fields: ['title', 'videoUrl'],
+              //   offers: {
+              //     populate: '*',
+              //   },
+              //   // that's weird because that population crash the whole app
+              //   // but it seems to properly reflect the data inside elements - offer
+              //   // maybe right now populate: "*" is enough to populate everything in some component alone
+              //   // offers: {
+              //   //   populate: {
+              //   //     fields: ['title', 'description'],
+              //   //     icon: { populate: '*' },
+              //   //   },
+              //   // },
+              // },
             },
           },
         },
