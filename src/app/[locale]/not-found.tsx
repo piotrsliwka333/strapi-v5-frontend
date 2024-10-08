@@ -14,7 +14,7 @@ export default function NotFound() {
       </h1>
       <Image
         priority
-        src={'/404_page_background.png' || ''}
+        src={'/404_page_background.png'}
         alt="none provided"
         width={0}
         height={0}
