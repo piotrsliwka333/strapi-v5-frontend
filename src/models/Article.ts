@@ -4,7 +4,7 @@ import { Image } from './common/Image';
 
 export interface Article {
   author: Author | null;
-  category: Category;
+  category: Category | null;
   cover: Image;
   // eslint-disable-next-line
   blocks: any[];

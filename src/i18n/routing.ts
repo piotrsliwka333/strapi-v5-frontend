@@ -11,20 +11,28 @@ export const routing = defineRouting({
   localePrefix,
   pathnames: {
     '/': '/',
+    '/training': {
+      en: '/training',
+      pl: '/trening',
+    },
+    '/about-us': {
+      en: '/about-us',
+      pl: '/o-nas',
+    },
     '/blog': {
       en: '/blog',
-      pl: "/blog"
+      pl: '/blog',
     },
     '/blog/articles/[slug]': {
       en: '/blog/articles/[slug]',
-      pl: "/blog/artykuły/[slug]"
-    }
+      pl: '/blog/artykuły/[slug]',
+    },
   },
   // Used when no locale matches
-  defaultLocale
+  defaultLocale,
 });
- 
+
 // Lightweight wrappers around Next.js' navigation APIs
 // that will consider the routing configuration
-export const {Link, redirect, usePathname, useRouter} =
+export const { Link, redirect, usePathname, useRouter } =
   createLocalizedPathnamesNavigation(routing);

@@ -38,7 +38,7 @@ export const Newsletter: React.FC<NewsletterProps> = (props: NewsletterProps) =>
               sizes="100vw"
             />
           </div>
-          <h5 className="text-2xl font-bold mb-2 lg:mb-0">{newsletter.title}</h5>
+          <h1 className="text-2xl font-bold mb-2 lg:mb-0">{newsletter.title}</h1>
           {formState.message === 'newsletter.messages.success' ? (
             <h1 className="text-green-600 font-bold text-2xl flex items-center justify-center">
               {t(formState.message)}

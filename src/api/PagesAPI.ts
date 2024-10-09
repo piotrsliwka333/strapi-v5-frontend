@@ -104,6 +104,75 @@ export class PagesAPI {
               //   // },
               // },
             },
+            'sections.blog-hero': {
+              populate: {
+                fields: ['title', 'description'],
+                articleLeft: {
+                  populate: {
+                    // fields: [
+                    //   'id',
+                    //   'documentId',
+                    //   'name',
+                    //   'email',
+                    //   'createdAt',
+                    //   'updatedAt',
+                    //   'publishedAt',
+                    //   'locale',
+                    // ],
+                    // fields: ['title', 'description'],
+                    cover: {
+                      populate: '*',
+                    },
+                    author: {
+                      populate: '*',
+                    },
+                    category: {
+                      populate: '*',
+                    },
+                  },
+                },
+                articleRightTop: {
+                  populate: {
+                    // fields: [
+                    //   'id',
+                    //   'documentId',
+                    //   'name',
+                    //   'email',
+                    //   'createdAt',
+                    //   'updatedAt',
+                    //   'publishedAt',
+                    //   'locale',
+                    // ],
+                    cover: {
+                      populate: '*',
+                    },
+                    author: {
+                      populate: '*',
+                    },
+                  },
+                },
+                articleRightBottom: {
+                  populate: {
+                    // fields: [
+                    // 'id',
+                    // 'documentId',
+                    // 'name',
+                    // 'email',
+                    // 'createdAt',
+                    // 'updatedAt',
+                    // 'publishedAt',
+                    // 'locale',
+                    // ],
+                    cover: {
+                      populate: '*',
+                    },
+                    author: {
+                      populate: '*',
+                    },
+                  },
+                },
+              },
+            },
           },
         },
       },
