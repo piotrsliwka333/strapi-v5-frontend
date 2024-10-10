@@ -23,7 +23,6 @@ interface ArticleProps {
 
 export const Article = (props: ArticleProps) => {
   const { article, type, orientation, className } = props;
-  console.log(article);
   const { title, description, author, publishedAt, cover, slug } = article;
   return (
     <article

@@ -9,7 +9,6 @@ export default async function ArticleRoute({
   params: { slug: string; locale: string };
 }) {
   const { slug, locale } = params;
-  console.log(slug);
 
   const articleResponse = await ArticlesAPI.findMany(locale, 0, 1, { slug });
   if (articleResponse && 'error' in articleResponse)

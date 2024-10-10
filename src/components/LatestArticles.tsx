@@ -45,7 +45,6 @@ export default function LatestArticles({ data }: LatestArticles) {
     (async () => {
       try {
         const categoriesResponse = await CategoriesAPI.findMany(locale);
-        console.log(categoriesResponse);
 
         if ('error' in categoriesResponse) return setCategoriesError(categoriesResponse);
         setCategories(categoriesResponse.data);
