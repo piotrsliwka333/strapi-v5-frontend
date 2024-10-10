@@ -1,26 +1,26 @@
 import { HttpClient } from '@/api/HttpClient';
+import { Image as ImageType } from '@/models/common/Image';
 import Image from 'next/image';
 
 interface OwnProps {
   data: {
-    // eslint-disable-next-line
-    file: any;
+    file: ImageType;
   };
 }
 
 export default function Media(props: OwnProps) {
   const { data } = props;
-  const imgUrl = HttpClient.getStrapiMedia(data.file.url);
   return (
-    <div className="flex items-center justify-center my-6 lg:mt-0 h-72 sm:h-80 lg:h-96 xl:h-112 2xl:h-128">
+    <section className="container mx-auto">
       <Image
-        src={imgUrl || ''}
         priority
-        alt={data.file.alternativeText || 'none provided'}
-        className="object-cover w-full h-full rounded-lg overflow-hidden"
-        width={400}
-        height={400}
+        src={HttpClient.getStrapiMedia(data.file.url)}
+        alt={data.file.alternativeText || 'not provided'}
+        width={0}
+        height={0}
+        sizes="100vw"
+        className="w-full h-auto mx-auto"
       />
-    </div>
+    </section>
   );
 }

@@ -22,7 +22,7 @@ interface LatestArticles {
 export default function LatestArticles({ data }: LatestArticles) {
   const { title, categoriesListTile, pagesPaginationListTitle } = data;
   const locale = useLocale();
-  let searchParams = useSearchParams();
+  const searchParams = useSearchParams();
   const [searchParamsCategory, setSearchParamsCategory] = useState<string | null>(
     searchParams.get('category')
   );
@@ -49,7 +49,8 @@ export default function LatestArticles({ data }: LatestArticles) {
 
         if ('error' in categoriesResponse) return setCategoriesError(categoriesResponse);
         setCategories(categoriesResponse.data);
-      } catch (e) {
+        // eslint-disable-next-line
+      } catch (e: unknown) {
         setCategoriesError({
           data: null,
           error: {
@@ -75,7 +76,8 @@ export default function LatestArticles({ data }: LatestArticles) {
         if ('error' in articlesResponse) return setArticlesError(articlesResponse);
         setArticles(articlesResponse.data);
         setArticlesPagination(articlesResponse.meta);
-      } catch (e) {
+        // eslint-disable-next-line
+      } catch (e: unknown) {
         setArticlesError({
           data: null,
           error: {
@@ -122,7 +124,7 @@ export default function LatestArticles({ data }: LatestArticles) {
                 aria-labelledby="categories-list"
                 className="mb-8 h-fit bg-secondary p-2 block rounded-lg"
               >
-                <li className="mb-2 last-of-type:mb-0">
+                <li key={'001'} className="mb-2 last-of-type:mb-0">
                   <Link
                     scroll={false}
                     className={`p-2.5 block footer-nav-link ${
@@ -136,7 +138,7 @@ export default function LatestArticles({ data }: LatestArticles) {
                   </Link>
                 </li>
                 {categories.map((category: Category) => (
-                  <li className="mb-2 last-of-type:mb-0">
+                  <li key={category.id} className="mb-2 last-of-type:mb-0">
                     <Link
                       className={`p-2.5 block footer-nav-link ${
                         searchParamsCategory === category.slug ? 'bg-primary' : ''
@@ -186,7 +188,7 @@ export default function LatestArticles({ data }: LatestArticles) {
                       (element: number) => {
                         const fixedElement = (element += 1);
                         return (
-                          <li>
+                          <li key={fixedElement}>
                             <Link
                               className={`p-2.5 block footer-nav-link text-center ${
                                 searchParamsPage && +searchParamsPage === fixedElement
@@ -262,7 +264,7 @@ export default function LatestArticles({ data }: LatestArticles) {
             <div className="w-full">
               <ul className="grid gap-8 w-full">
                 {articles.map((article: ArticleType) => (
-                  <li className="w-full">
+                  <li key={article.id} className="w-full">
                     <Article
                       article={article}
                       type={ArticleKindType.PRIMARY}

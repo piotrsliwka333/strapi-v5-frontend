@@ -35,6 +35,13 @@ export class ArticlesAPI {
             'article-shared.cta-command-line': {
               populate: '*',
             },
+            // componented until strapi fix their bug
+            // 'sections.discover-articles': {
+            //   fields: ['title'],
+            //   articles: {
+            //     populate: '*',
+            //   },
+            // },
           },
         },
       },

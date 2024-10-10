@@ -18,26 +18,28 @@ export default function CtaCommandLine({ data }: CtaCommandLine) {
   const [copied, setCopied] = useState<boolean>(false);
 
   return (
-    <section className="max-w-[980px] mx-auto my-6 relative">
-      <CopyToClipboard
-        text={data.commandLine}
-        onCopy={() => {
-          setCopied(true);
-          setTimeout(() => {
-            setCopied(false);
-          }, 3000);
-        }}
-      >
-        <button
-          disabled={copied}
-          className="absolute right-4 top-4 z-50 text-white btn-primary shadow-xl shadow-textPrimary-500/40"
+    <section className="container mx-auto">
+      <div className="w-full relative">
+        <CopyToClipboard
+          text={data.commandLine}
+          onCopy={() => {
+            setCopied(true);
+            setTimeout(() => {
+              setCopied(false);
+            }, 3000);
+          }}
         >
-          {copied ? 'Copied' : 'Copy'}
-        </button>
-      </CopyToClipboard>
-      <Prism showLineNumbers language={data.language} style={materialOceanic}>
-        {data.commandLine}
-      </Prism>
+          <button
+            disabled={copied}
+            className="absolute right-4 top-4 z-50 text-white btn-primary shadow-xl shadow-textPrimary-500/40"
+          >
+            {copied ? 'Copied' : 'Copy'}
+          </button>
+        </CopyToClipboard>
+        <Prism showLineNumbers language={data.language} style={materialOceanic}>
+          {data.commandLine}
+        </Prism>
+      </div>
     </section>
   );
 }
