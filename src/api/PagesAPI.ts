@@ -173,6 +173,9 @@ export class PagesAPI {
                 },
               },
             },
+            'sections.latest-articles': {
+              populate: '*',
+            },
           },
         },
       },
