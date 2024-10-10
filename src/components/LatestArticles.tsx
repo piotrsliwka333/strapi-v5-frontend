@@ -14,11 +14,13 @@ import { Meta } from '@/models/CollectionType';
 interface LatestArticles {
   data: {
     title: string;
+    categoriesListTile: string;
+    pagesPaginationListTitle: string;
   };
 }
 
 export default function LatestArticles({ data }: LatestArticles) {
-  const { title } = data;
+  const { title, categoriesListTile, pagesPaginationListTitle } = data;
   const locale = useLocale();
   let searchParams = useSearchParams();
   const [searchParamsCategory, setSearchParamsCategory] = useState<string | null>(
@@ -114,7 +116,7 @@ export default function LatestArticles({ data }: LatestArticles) {
           ) : (
             <div>
               <h1 className="mb-2 font-bold" id="categories-list">
-                Categories
+                {categoriesListTile}
               </h1>
               <ul
                 aria-labelledby="categories-list"
@@ -170,7 +172,7 @@ export default function LatestArticles({ data }: LatestArticles) {
               {articlesPagination.pagination.pageCount > 1 && (
                 <div className="mt-4">
                   <h1 className="mb-2 font-bold" id="pages-pagination-list">
-                    Pages
+                    {pagesPaginationListTitle}
                   </h1>
                   <ul
                     aria-labelledby="pages-pagination-list"
