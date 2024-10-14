@@ -37,7 +37,9 @@ export async function generateStaticParams({ params: { locale } }: { params: { l
   const pagesResponse = await PagesAPI.findMany(locale);
 
   if (pagesResponse && 'error' in pagesResponse) return [];
-  return pagesResponse.data.map((element: Page) => ({ slug: [element.slug] }));
+  return pagesResponse.data
+    .filter((element: Page) => element.slug !== 'home')
+    .map((element: Page) => ({ slug: [element.slug] }));
 }
 
 const FALLBACK_SEO: Metadata = {
