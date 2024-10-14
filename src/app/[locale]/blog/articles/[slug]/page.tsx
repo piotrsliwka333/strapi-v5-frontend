@@ -33,12 +33,14 @@ export default async function ArticleRoute({
 
   const jsonLd: WithContext<ArticleJSONLD> = {
     '@context': 'https://schema.org',
-    '@type': 'Article',
-    name: seo.metaTitle,
-    description: seo.metaDescription,
+    '@type': 'NewsArticle',
+    headline: seo.metaTitle,
+    datePublished: publishedAt,
+    dateModified: publishedAt,
   };
 
   if (seo.metaImage) jsonLd.image = HttpClient.getStrapiMedia(seo.metaImage.url);
+  if (author) jsonLd.author = [{ '@type': 'Person', name: author.name }];
   return (
     <>
       {/* Add JSON-LD to your page */}
@@ -96,7 +98,7 @@ export async function generateMetadata({
   if (articleResponse && 'error' in articleResponse) return FALLBACK_SEO;
 
   if (articleResponse.data.length === 0) return FALLBACK_SEO;
-  const { seo, author } = articleResponse.data[0];
+  const { seo, author, publishedAt } = articleResponse.data[0];
   const facebookSeo: MetaSocial | undefined = seo.metaSocial.find(
     (element: MetaSocial) => element.socialNetwork === MetaSocialNetwork.Facebook
   );
@@ -113,13 +115,14 @@ export async function generateMetadata({
           title: facebookSeo.title,
           description: facebookSeo.description,
           url: HttpClient.getStrapiURL(`/blog/articles/${slug}`),
+          type: 'article',
+          publishedTime: publishedAt,
           images: [
             {
               url: HttpClient.getStrapiMedia(facebookSeo.image.url),
             },
           ],
           locale: locale,
-          type: 'website',
         }
       : {},
     twitter: xSeo

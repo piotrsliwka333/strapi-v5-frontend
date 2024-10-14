@@ -26,6 +26,7 @@ export default async function PageRoute({
       </div>
     );
   if (pagesResponse && pagesResponse.data && pagesResponse.data.length === 0) return notFound();
+
   // eslint-disable-next-line
   return pagesResponse.data[0].blocks.map((section: any, index: number) =>
     componentResolver(section, index)
@@ -77,6 +78,15 @@ export async function generateMetadata({
           ],
           locale: locale,
           type: 'website',
+        }
+      : seo.metaImage
+      ? {
+          url: HttpClient.getStrapiURL(`/${slugFromResponse}`),
+          images: [
+            {
+              url: HttpClient.getStrapiMedia(seo.metaImage.url),
+            },
+          ],
         }
       : {},
     twitter: xSeo
