@@ -25,7 +25,7 @@ export const routing = defineRouting({
     },
     '/blog/articles/[slug]': {
       en: '/blog/articles/[slug]',
-      pl: '/blog/artykuły/[slug]',
+      pl: '/blog/artykuly/[slug]',
     },
   },
   // Used when no locale matches
