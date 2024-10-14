@@ -4,6 +4,7 @@ import { notFound } from 'next/navigation';
 
 export default async function RootPageRoute({ params }: { params: { locale: string } }) {
   const { locale } = params;
+
   try {
     const pages = await PagesAPI.findMany(locale, { slug: 'home' });
     if (pages && 'error' in pages)

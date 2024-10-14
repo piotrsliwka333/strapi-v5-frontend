@@ -40,8 +40,8 @@ export class HttpClient {
       const data = await response.json();
       return data;
     } catch (error) {
-      console.error(error);
-      throw new Error(`Some error appeared during GET method`);
+      // eslint-disable-next-line
+      throw new Error(error as any);
     }
   }
 

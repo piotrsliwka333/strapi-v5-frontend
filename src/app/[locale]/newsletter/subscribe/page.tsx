@@ -1,17 +1,14 @@
 import { NewsletterAPI } from '@/api/NewsletterAPI';
 import { confirmUserNewsletterSubscriptionService } from '@/data/services/newsletter-service';
-import { getTranslations, unstable_setRequestLocale } from 'next-intl/server';
+import { getTranslations } from 'next-intl/server';
 
 export default async function SubscribeRoute({
   searchParams,
-  params,
 }: {
   params: { locale: string };
   searchParams: { newsletterUserDocumentId: string | null; confirmationToken: string | null };
 }) {
   const { newsletterUserDocumentId, confirmationToken } = searchParams;
-  const { locale } = params;
-  unstable_setRequestLocale(locale);
   const t = await getTranslations();
 
   if (!newsletterUserDocumentId)

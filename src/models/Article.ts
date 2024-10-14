@@ -1,6 +1,7 @@
 import { Author } from './Author';
 import { Category } from './Category';
 import { Image } from './common/Image';
+import { SEO } from './common/SEO';
 
 export interface Article {
   author: Author | null;
@@ -17,4 +18,5 @@ export interface Article {
   slug: string;
   title: string;
   updatedAt: string;
+  seo: SEO;
 }

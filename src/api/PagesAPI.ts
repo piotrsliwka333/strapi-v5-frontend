@@ -1,15 +1,19 @@
 import { CollectionType } from '@/models/CollectionType';
-import { Page, PageFindManyResponseError } from '@/models/Page';
+import { Page } from '@/models/Page';
 import { HttpClient } from './HttpClient';
+import { ErrorAPI } from '@/models/ErrorAPI';
 
 export class PagesAPI {
   static getUrl() {
     return `/pages`;
   }
 
-  static getParamsObject(locale: string, filters: Record<string, string>) {
+  static getParamsObject(
+    locale: string,
+    filters?: Record<string, string | Record<string, string>>
+  ) {
     return {
-      filters,
+      filters: filters ? filters : {},
       locale,
       populate: {
         blocks: {
@@ -109,17 +113,6 @@ export class PagesAPI {
                 fields: ['title', 'description'],
                 articleLeft: {
                   populate: {
-                    // fields: [
-                    //   'id',
-                    //   'documentId',
-                    //   'name',
-                    //   'email',
-                    //   'createdAt',
-                    //   'updatedAt',
-                    //   'publishedAt',
-                    //   'locale',
-                    // ],
-                    // fields: ['title', 'description'],
                     cover: {
                       populate: '*',
                     },
@@ -133,16 +126,6 @@ export class PagesAPI {
                 },
                 articleRightTop: {
                   populate: {
-                    // fields: [
-                    //   'id',
-                    //   'documentId',
-                    //   'name',
-                    //   'email',
-                    //   'createdAt',
-                    //   'updatedAt',
-                    //   'publishedAt',
-                    //   'locale',
-                    // ],
                     cover: {
                       populate: '*',
                     },
@@ -153,16 +136,6 @@ export class PagesAPI {
                 },
                 articleRightBottom: {
                   populate: {
-                    // fields: [
-                    // 'id',
-                    // 'documentId',
-                    // 'name',
-                    // 'email',
-                    // 'createdAt',
-                    // 'updatedAt',
-                    // 'publishedAt',
-                    // 'locale',
-                    // ],
                     cover: {
                       populate: '*',
                     },
@@ -178,16 +151,38 @@ export class PagesAPI {
             },
           },
         },
+        seo: {
+          populate: {
+            fields: [
+              'metaTitle',
+              'metaDescription',
+              'keywords',
+              'metaRobots',
+              'structuredData',
+              'metaViewport',
+              'canonicalURL',
+            ],
+            metaImage: { populate: '*' },
+            metaSocial: {
+              populate: {
+                fields: ['socialNetwork', 'title', 'description'],
+                image: {
+                  populate: '*',
+                },
+              },
+            },
+          },
+        },
       },
     };
   }
 
   static findMany(
     locale: string,
-    filters: Record<string, string>
-  ): Promise<CollectionType<Page> | PageFindManyResponseError> {
+    filters?: Record<string, string | Record<string, string>>
+  ): Promise<CollectionType<Page> | ErrorAPI> {
     return HttpClient.get(this.getUrl(), this.getParamsObject(locale, filters)).then((response) =>
-      HttpClient.mapResponse<CollectionType<Page> | PageFindManyResponseError>(response)
+      HttpClient.mapResponse<CollectionType<Page> | ErrorAPI>(response)
     );
   }
 }

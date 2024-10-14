@@ -44,6 +44,28 @@ export class ArticlesAPI {
             // },
           },
         },
+        seo: {
+          populate: {
+            fields: [
+              'metaTitle',
+              'metaDescription',
+              'keywords',
+              'metaRobots',
+              'structuredData',
+              'metaViewport',
+              'canonicalURL',
+            ],
+            metaImage: { populate: '*' },
+            metaSocial: {
+              populate: {
+                fields: ['socialNetwork', 'title', 'description'],
+                image: {
+                  populate: '*',
+                },
+              },
+            },
+          },
+        },
       },
       pagination: {
         page,

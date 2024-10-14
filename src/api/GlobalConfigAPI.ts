@@ -1,11 +1,11 @@
-import { GlobalConfig } from "@/models/GlobalConfig";
-import { HttpClient } from "./HttpClient";
-import { SingleType } from "@/models/SingleType";
+import { GlobalConfig } from '@/models/GlobalConfig';
+import { HttpClient } from './HttpClient';
+import { SingleType } from '@/models/SingleType';
+import { ErrorAPI } from '@/models/ErrorAPI';
 
 export class GlobalConfigAPI {
-
   static getUrl() {
-    return `/global`
+    return `/global`;
   }
 
   static getParamsObject(locale: string) {
@@ -32,21 +32,23 @@ export class GlobalConfigAPI {
           populate: {
             brandLogos: true,
             newsletter: {
-              populate: '*'
+              populate: '*',
             },
             mainLinks: {
-              populate: '*'
+              populate: '*',
             },
             contact: {
-              populate: '*'
+              populate: '*',
             },
           },
         },
       },
-    }
+    };
   }
 
-  static find(locale: string): Promise<SingleType<GlobalConfig>> {
-    return HttpClient.get(this.getUrl(), this.getParamsObject(locale)).then(response => HttpClient.mapResponse<SingleType<GlobalConfig>>(response))
+  static find(locale: string): Promise<SingleType<GlobalConfig> | ErrorAPI> {
+    return HttpClient.get(this.getUrl(), this.getParamsObject(locale)).then((response) =>
+      HttpClient.mapResponse<SingleType<GlobalConfig> | ErrorAPI>(response)
+    );
   }
 }
