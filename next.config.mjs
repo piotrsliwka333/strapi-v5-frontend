@@ -1,13 +1,14 @@
 /** @type {import('next').NextConfig} */
 
 import createNextIntlPlugin from 'next-intl/plugin';
- 
+
 const withNextIntl = createNextIntlPlugin();
- 
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: false,
   images: {
+    dangerouslyAllowSVG: true,
     remotePatterns: [
       {
         protocol: 'http',
@@ -27,6 +28,10 @@ const nextConfig = {
       },
       {
         protocol: 'https',
+        hostname: 'my-project-name-images-strapi-v5.s3.eu-north-1.amazonaws.com',
+      },
+      {
+        protocol: 'https',
         hostname: 'generous-leader-d581ba65b8.strapiapp.com',
       },
       {
@@ -36,5 +41,5 @@ const nextConfig = {
     ],
   },
 };
- 
+
 export default withNextIntl(nextConfig);
