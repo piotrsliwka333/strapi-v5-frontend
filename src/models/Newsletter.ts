@@ -32,14 +32,3 @@ export interface NewsletterCreateResponse {
   created_at: string;
   updated_at: string;
 }
-
-export interface NewsletterCreateResponseError {
-  data: null;
-  error: {
-    status: number;
-    name: string;
-    message: string;
-    // eslint-disable-next-line
-    details: { errors: any[] };
-  };
-}

@@ -1,3 +1,4 @@
+import { ErrorAPI } from '@/models/ErrorAPI';
 import qs from 'qs';
 
 export class HttpClient {
@@ -93,13 +94,18 @@ export class HttpClient {
     }
   }
 
-  static async delete(path: string, options: object = {}): Promise<void> {
+  static async delete(path: string, options: object = {}): Promise<void | ErrorAPI> {
     const requestUrl: string = this.getStrapiURL(`/api${path}`);
     try {
-      await fetch(requestUrl, {
+      const response = await fetch(requestUrl, {
         method: 'DELETE',
-        ...options,
+        headers: {
+          ...options,
+        },
       });
+      if (response.status === 204) return; // here when don't want to use json() metohd to resolve the body
+      // as status 204 indicates there is no body content. If we do it we will receive the error.
+      return response.json();
     } catch (error) {
       // eslint-disable-next-line
       throw new Error(error as any);

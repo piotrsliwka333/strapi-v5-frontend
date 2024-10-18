@@ -39,7 +39,15 @@ export default async function UnsubscribeRoute({
       data.data.documentId === newsletterUserDocumentId &&
       data.data.unsubscribeToken === unsubscribeToken
     ) {
-      await unsubscribeNewsletterService(data.data.documentId);
+      const unsubscribeNewsletterResponse = await unsubscribeNewsletterService(
+        data.data.documentId
+      );
+      if (unsubscribeNewsletterResponse && 'error' in unsubscribeNewsletterResponse)
+        return (
+          <h1 className="container mx-auto bg-background font-bold my-16 border border-red-500 text-center p-16  rounded-xl text-red-500 text-3xl">
+            {unsubscribeNewsletterResponse.error.message}
+          </h1>
+        );
       return (
         <h1 className="container mx-auto bg-background font-bold my-16 border border-green-600 text-center p-16  rounded-xl text-green-600 text-3xl">
           {t('unsubscribe.success')}

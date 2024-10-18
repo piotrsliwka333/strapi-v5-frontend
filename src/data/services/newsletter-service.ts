@@ -1,13 +1,15 @@
 import { NewsletterAPI } from '@/api/NewsletterAPI';
-import { NewsletterCreateResponse, NewsletterCreateResponseError, NewsletterPayload } from '@/models/Newsletter';
+import { ErrorAPI } from '@/models/ErrorAPI';
+import { NewsletterCreateResponse, NewsletterPayload } from '@/models/Newsletter';
 import { v4 as uuidv4 } from 'uuid';
 
 interface SubscribeToNewsletterProps {
   email: string;
 }
 
-export async function subscribeToNewsletterService(userData: SubscribeToNewsletterProps): Promise<NewsletterCreateResponse | NewsletterCreateResponseError> {
-
+export async function subscribeToNewsletterService(
+  userData: SubscribeToNewsletterProps
+): Promise<NewsletterCreateResponse | ErrorAPI> {
   const payload: NewsletterPayload = {
     data: {
       email: userData.email,
@@ -15,10 +17,10 @@ export async function subscribeToNewsletterService(userData: SubscribeToNewslett
       confirmationToken: uuidv4(),
       isConfirmed: false,
     },
-  }
+  };
 
   try {
-    return NewsletterAPI.create(payload)
+    return NewsletterAPI.create(payload);
   } catch (error) {
     // eslint-disable-next-line
     throw new Error(error as any);
@@ -35,21 +37,20 @@ interface ConfirmUserNewsletterSubscriptionProps {
 export async function confirmUserNewsletterSubscriptionService(
   id: string,
   userData: ConfirmUserNewsletterSubscriptionProps
-) {
-
+): Promise<NewsletterCreateResponse | ErrorAPI> {
   try {
-    return NewsletterAPI.update(id, {data: userData })
+    return NewsletterAPI.update(id, { data: userData });
   } catch (error) {
     // eslint-disable-next-line
     throw new Error(error as any);
   }
 }
 
-export async function unsubscribeNewsletterService(id: string) {
+export async function unsubscribeNewsletterService(id: string): Promise<void | ErrorAPI> {
   try {
-    return NewsletterAPI.delete(id)
+    return NewsletterAPI.delete(id);
   } catch (error) {
-    {/* eslint-disable-next-line */}
+    // eslint-disable-next-line
     throw new Error(error as any);
   }
 }
