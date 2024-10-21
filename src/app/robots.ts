@@ -13,9 +13,6 @@ export default function robots(): MetadataRoute.Robots {
         disallow: ['/'],
       },
     ],
-    sitemap: [
-      'https://www.test1020.xyz/sitemap.xml',
-      'https://www.test1020.xyz/blog/articles/sitemap.xml',
-    ],
+    sitemap: 'https://www.test1020.xyz/sitemap.xml',
   };
 }
