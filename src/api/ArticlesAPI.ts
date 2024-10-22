@@ -35,13 +35,24 @@ export class ArticlesAPI {
             'article-shared.cta-command-line': {
               populate: '*',
             },
-            // componented until strapi fix their bug
-            // 'sections.discover-articles': {
-            //   fields: ['title'],
-            //   articles: {
-            //     populate: '*',
-            //   },
-            // },
+            // Right now I am pretty sure it was my fault not strapi bug - I forgot about populate above
+            // so it means that ,,fields'' field has to be inside populate not as a sibling
+            // populate has to be immediately after section name
+            'sections.discover-articles': {
+              populate: {
+                fields: ['title'],
+                articles: {
+                  populate: {
+                    fields: ['title', 'description'],
+                    cover: { populate: '*' },
+                    category: { populate: '*' },
+                    author: {
+                      populate: '*',
+                    },
+                  },
+                },
+              },
+            },
           },
         },
         seo: {

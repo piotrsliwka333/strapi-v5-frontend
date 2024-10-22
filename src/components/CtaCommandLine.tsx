@@ -31,7 +31,7 @@ export default function CtaCommandLine({ data }: CtaCommandLine) {
         >
           <button
             disabled={copied}
-            className="absolute right-4 top-4 z-50 text-white btn-primary shadow-xl shadow-textPrimary-500/40"
+            className="absolute right-4 top-4 z-40 text-white btn-primary shadow-xl shadow-textPrimary-500/40"
           >
             {copied ? 'Copied' : 'Copy'}
           </button>

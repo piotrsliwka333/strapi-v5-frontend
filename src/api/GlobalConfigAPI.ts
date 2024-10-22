@@ -12,7 +12,7 @@ export class GlobalConfigAPI {
     return {
       locale,
       populate: {
-        favicon: true,
+        favicon: { populate: '*' },
         header: {
           populate: {
             button: true,
@@ -39,6 +39,28 @@ export class GlobalConfigAPI {
             },
             contact: {
               populate: '*',
+            },
+          },
+        },
+        seo: {
+          populate: {
+            fields: [
+              'metaTitle',
+              'metaDescription',
+              'keywords',
+              'metaRobots',
+              'structuredData',
+              'metaViewport',
+              'canonicalURL',
+            ],
+            metaImage: { populate: '*' },
+            metaSocial: {
+              populate: {
+                fields: ['socialNetwork', 'title', 'description'],
+                image: {
+                  populate: '*',
+                },
+              },
             },
           },
         },

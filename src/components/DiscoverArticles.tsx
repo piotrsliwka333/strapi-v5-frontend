@@ -10,6 +10,7 @@ interface DiscoverArticles {
 
 export default function DiscoverArticles({ data }: DiscoverArticles) {
   const { title, articles } = data;
+
   return (
     <section className="container mx-auto py-16">
       <h1 className="text-center font-bold text-5xl text-textPrimary mb-8">{title}</h1>

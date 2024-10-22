@@ -72,8 +72,8 @@ export async function generateMetadata({
 
   if (globalResponse && 'error' in globalResponse) return FALLBACK_SEO;
   return {
-    title: FALLBACK_SEO.title,
-    description: FALLBACK_SEO.description,
+    title: globalResponse.data.seo.metaTitle,
+    description: globalResponse.data.seo.metaDescription,
     icons: {
       icon: [{ url: `${HttpClient.getStrapiMedia(globalResponse.data.favicon.url)}` }],
     },
