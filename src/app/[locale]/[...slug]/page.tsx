@@ -12,6 +12,7 @@ export default async function PageRoute({
   params: { slug: string[]; locale: string };
 }) {
   const { slug, locale } = params;
+  console.log('slug', slug.join('/'));
   const pagesResponse = await PagesAPI.findMany(locale, { slug: slug[0] });
   if (pagesResponse && 'error' in pagesResponse)
     return (

@@ -30,7 +30,7 @@ export default function AboutUs({ data }: AboutUsProps) {
         alt="none provided"
         width={0}
         height={0}
-        sizes="100vw"
+        sizes="(min-width:1000px) 30vw, 100vw"
         className="w-full lg:w-auto lg:basis-2/4 lg:pr-32"
       />
       <div className="mb-24 lg:mb-0 lg:basis-2/4">

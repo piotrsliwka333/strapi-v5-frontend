@@ -149,6 +149,20 @@ export class PagesAPI {
             'sections.latest-articles': {
               populate: '*',
             },
+            'sections.services-hero': {
+              populate: {
+                fields: ['title', 'description'],
+                background: {
+                  populate: '*',
+                },
+                buttonOne: {
+                  populate: '*',
+                },
+                buttonTwo: {
+                  populate: '*',
+                },
+              },
+            },
           },
         },
         seo: {
