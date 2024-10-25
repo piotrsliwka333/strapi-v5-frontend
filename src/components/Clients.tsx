@@ -1,5 +1,4 @@
 'use client';
-import Image from 'next/image';
 // Import Swiper React components
 import { Swiper, SwiperSlide } from 'swiper/react';
 
@@ -66,10 +65,21 @@ export default function Clients({ data }: ClientsProps) {
         className="!py-4 border border-y-secondary"
       >
         {data.clients.map((client: Client) => {
-          const imageUrl = HttpClient.getStrapiMedia(client.icon.url);
           return (
             <SwiperSlide key={client.id}>
-              {imageUrl && <Image priority height={50} width={150} alt="alt text" src={imageUrl} />}
+              {/* because of reaching limit on vercel for image optimizations has to swich to normal images */}
+              {/* <Image
+                priority
+                height={50}
+                width={150}
+                alt={client.icon.alternativeText || 'not provided'}
+                src={HttpClient.getStrapiMedia(client.icon.url)}
+              /> */}
+              <img
+                alt={client.icon.alternativeText || 'not provided'}
+                src={HttpClient.getStrapiMedia(client.icon.url)}
+                className="w-[150px]"
+              />
             </SwiperSlide>
           );
         })}

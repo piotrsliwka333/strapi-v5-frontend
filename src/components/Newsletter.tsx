@@ -1,12 +1,11 @@
 'use client';
+import { HttpClient } from '@/api/HttpClient';
 import { subscribeNewsletterAction } from '@/data/actions/newsletter-actions';
+import { Newsletter as NewsletterType } from '@/models/Footer';
 import { useTranslations } from 'next-intl';
 import { useFormState } from 'react-dom';
-import { Newsletter as NewsletterType } from '@/models/Footer';
-import Image from 'next/image';
-import { HttpClient } from '@/api/HttpClient';
-import { ZodErrors } from './forms/ZodErrors';
 import { SubmitButton } from './forms/SubmitButton';
+import { ZodErrors } from './forms/ZodErrors';
 
 interface NewsletterProps {
   newsletter: NewsletterType;
@@ -29,26 +28,37 @@ export const Newsletter: React.FC<NewsletterProps> = (props: NewsletterProps) =>
       <div className="xl:px-16">
         <div className="bg-background border border-secondary lg:flex justify-between items-center px-4 py-8 lg:pl-[190px] rounded-xl text-textPrimary relative">
           <div className="hidden lg:block absolute left-[-20px] top-1/2 translate-y-[-50%] rounded-xl overflow-hidden">
-            <Image
+            {/* because of reaching limit on vercel for image optimizations has to swich to normal images */}
+            {/* <Image
               priority
               src={HttpClient.getStrapiMedia(newsletter.image.url)}
               alt="none provided"
               width={150}
               height={150}
               sizes="100vw"
+            /> */}
+            <img
+              src={HttpClient.getStrapiMedia(newsletter.image.url)}
+              alt={newsletter.image.alternativeText || 'none provided'}
+              className="w-[150px] h-[150px]"
             />
           </div>
           <h1 className="text-2xl font-bold mb-2 lg:mb-0">{newsletter.title}</h1>
           {formState.message === 'newsletter.messages.success' ? (
             <h1 className="text-green-600 font-bold text-2xl flex items-center justify-center">
               {t(formState.message)}
-              <Image
+              {/* <Image
                 priority
                 src={'/circle-check-regular-1.svg'}
                 alt="none provided"
                 width={40}
                 height={40}
                 sizes="100vw"
+              /> */}
+              <img
+                src="/circle-check-regular-1.svg"
+                alt="none provided"
+                className="w-[40px] h-[40px]"
               />
             </h1>
           ) : (

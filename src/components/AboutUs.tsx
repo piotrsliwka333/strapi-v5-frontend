@@ -1,8 +1,6 @@
-import React from 'react';
-import Image from 'next/image';
-import { Image as ImageType } from '@/models/common/Image';
 import { HttpClient } from '@/api/HttpClient';
 import { Link } from '@/i18n/routing';
+import { Image as ImageType } from '@/models/common/Image';
 
 interface Button {
   id: string;
@@ -24,7 +22,8 @@ interface AboutUsProps {
 export default function AboutUs({ data }: AboutUsProps) {
   return (
     <section className="container mx-auto py-12 lg:py-20 flex flex-col-reverse lg:flex-row lg:items-start lg:justify-between">
-      <Image
+      {/* because of reaching limit on vercel for image optimizations has to swich to normal images */}
+      {/* <Image
         priority
         src={HttpClient.getStrapiMedia(data.image.url)}
         alt="none provided"
@@ -32,7 +31,14 @@ export default function AboutUs({ data }: AboutUsProps) {
         height={0}
         sizes="(min-width:1000px) 30vw, 100vw"
         className="w-full lg:w-auto lg:basis-2/4 lg:pr-32"
-      />
+      /> */}
+      <div className="w-full lg:w-auto lg:basis-2/4 lg:pr-32">
+        <img
+          src={HttpClient.getStrapiMedia(data.image.url)}
+          alt={data.image.alternativeText || 'not provided'}
+          className="block w-full"
+        />
+      </div>
       <div className="mb-24 lg:mb-0 lg:basis-2/4">
         <h1 className="text-5xl text-textPrimary text-center font-bold lg:text-left xl:text-5xl mb-12">
           {data.title}

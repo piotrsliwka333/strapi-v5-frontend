@@ -1,6 +1,5 @@
 import { Link } from '@/i18n/routing';
 import { useTranslations } from 'next-intl';
-import Image from 'next/image';
 
 export default function NotFound() {
   const t = useTranslations();
@@ -12,13 +11,19 @@ export default function NotFound() {
       <h1 className="text-3xl font-bold text-center xl:text-4xl mb-8 xl:mb-8">
         {t('notFound.title')}
       </h1>
-      <Image
+      {/* because of reaching limit on vercel for image optimizations has to swich to normal images */}
+      {/* <Image
         priority
         src={'/404_page_background.png'}
         alt="none provided"
         width={0}
         height={0}
         sizes="100vw"
+        className="w-full h-auto mb-16 xl:w-[80%] mx-auto"
+      /> */}
+      <img
+        src="/404_page_background.png"
+        alt="not found image"
         className="w-full h-auto mb-16 xl:w-[80%] mx-auto"
       />
       <div className="flex justify-center mt-8">

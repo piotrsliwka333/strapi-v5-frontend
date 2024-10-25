@@ -1,7 +1,6 @@
 import { HttpClient } from '@/api/HttpClient';
 import { Link } from '@/i18n/routing';
 import { Article as ArticleType } from '@/models/Article';
-import Image from 'next/image';
 import { Author } from './Author';
 
 export enum ArticleKindType {
@@ -46,7 +45,8 @@ export const Article = (props: ArticleProps) => {
               : 'mb-4 w-full max-h-[300px] md:mb-0 md:w-[49%] md:max-h-[230px]'
           }`}
         >
-          <Image
+          {/* because of reaching limit on vercel for image optimizations has to swich to normal images */}
+          {/* <Image
             src={HttpClient.getStrapiMedia(cover.url)}
             priority
             alt={cover.alternativeText || 'not provided'}
@@ -58,6 +58,15 @@ export const Article = (props: ArticleProps) => {
             // rozmzuje poniewaz jesli nie okreslone a nie ma propsa fill to pewnie jest 1 albo zero i wtedy bierze on
             // najmniejszej jakości zdjecie ktore jest slabej jakosci
             sizes="620px"
+            className={`block rounded-xl ${
+              orientation === ArticleOrientation.VERTICAL
+                ? 'w-full max-h-[300px]'
+                : 'w-full max-h-[300px] md:max-h-[230px]'
+            }`}
+          /> */}
+          <img
+            src={HttpClient.getStrapiMedia(cover.url)}
+            alt={cover.alternativeText || 'not provided'}
             className={`block rounded-xl ${
               orientation === ArticleOrientation.VERTICAL
                 ? 'w-full max-h-[300px]'

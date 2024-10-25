@@ -1,9 +1,8 @@
+import { HttpClient } from '@/api/HttpClient';
 import { Author as AuthorType } from '@/models/Author';
 import { Image as ImageType } from '@/models/common/Image';
-import { Author } from './Author';
 import { ArticleKindType } from './Article';
-import Image from 'next/image';
-import { HttpClient } from '@/api/HttpClient';
+import { Author } from './Author';
 
 interface ArticleHeroProps {
   title: string;
@@ -26,13 +25,19 @@ export default function ArticleHero(props: ArticleHeroProps) {
           <Author author={author} type={ArticleKindType.PRIMARY} publishedAt={publishedAt} />
         </div>
       )}
-      <Image
+      {/* because of reaching limit on vercel for image optimizations has to swich to normal images */}
+      {/* <Image
         priority
         src={HttpClient.getStrapiMedia(cover.url)}
         alt={cover.alternativeText || ''}
         width={0}
         height={0}
         sizes="100vw"
+        className="w-full h-auto max-h-[450px] mx-auto"
+      /> */}
+      <img
+        src={HttpClient.getStrapiMedia(cover.url)}
+        alt={cover.alternativeText || 'not provided'}
         className="w-full h-auto max-h-[450px] mx-auto"
       />
     </section>

@@ -2,7 +2,6 @@ import { HttpClient } from '@/api/HttpClient';
 import { Link } from '@/i18n/routing';
 import { Image as ImageType } from '@/models/common/Image';
 import { Link as LinkType } from '@/models/common/Link';
-import Image from 'next/image';
 
 interface HeroProps {
   data: {
@@ -23,12 +22,18 @@ export default function Hero({ data }: HeroProps) {
     <section className="w-full py-12 pt-20 lg:py-20">
       <div className="container mx-auto xl:flex xl:justify-between h-full">
         <div className="hidden xl:flex xl:items-end basis-[240px]">
-          <Image
-            src={imgLeftUrl || ''}
+          {/* because of reaching limit on vercel for image optimizations has to swich to normal images */}
+          {/* <Image
+            src={imgLeftUrl}
             alt={data.imageLeft.alternativeText || 'none provided'}
             height={0}
             width={0}
             sizes="100vw"
+            className="w-[240px] h-[240px]"
+          /> */}
+          <img
+            src={imgLeftUrl}
+            alt={data.imageLeft.alternativeText || 'none provided'}
             className="w-[240px] h-[240px]"
           />
         </div>
@@ -66,79 +71,51 @@ export default function Hero({ data }: HeroProps) {
         </div>
 
         <div className="hidden xl:block basis-[240px]">
-          <Image
+          {/* <Image
             src={imgRightUrl || ''}
             priority
             alt={data.imageRight.alternativeText || 'none provided'}
             height={0}
             width={0}
             sizes="100vw"
+            className="w-[195px] h-[195px]"
+          /> */}
+          <img
+            src={imgRightUrl}
+            alt={data.imageRight.alternativeText || 'none provided'}
             className="w-[240px] h-[240px]"
           />
         </div>
 
-        <div className="relative h-[328px] w-[328px] mx-auto xl:hidden">
-          <Image
+        <div className="relative h-[320px] w-[320px] mx-auto xl:hidden">
+          {/* <Image
             src={imgLeftUrl || ''}
             priority
             alt={data.imageLeft.alternativeText || 'none provided'}
             className="absolute top-0 left-0"
             width={195}
             height={195}
+          /> */}
+          <img
+            src={imgLeftUrl}
+            alt={data.imageLeft.alternativeText || 'none provided'}
+            className="w-[195px] h-[195px] absolute top-0 left-0"
           />
-          <Image
+          {/* <Image
             src={imgRightUrl || ''}
             priority
             alt={data.imageRight.alternativeText || 'none provided'}
             className="absolute bottom-0 right-0"
             width={195}
             height={195}
+          /> */}
+          <img
+            src={imgRightUrl}
+            alt={data.imageRight.alternativeText || 'none provided'}
+            className="w-[195px] h-[195px] absolute bottom-0 right-0"
           />
         </div>
       </div>
     </section>
   );
-
-  // return (
-  //   <section className="dark:bg-black dark:text-gray-100">
-  //     <div className="container flex flex-col justify-center p-6 mx-auto sm:py-12 lg:py-24 lg:flex-row lg:justify-between">
-  //       <div className="flex flex-col justify-center p-6 text-center rounded-lg lg:max-w-md xl:max-w-lg lg:text-left">
-  //         <HighlightedText
-  //           text={data.title}
-  //           tag="h1"
-  //           className="text-5xl font-bold leading-none sm:text-6xl mb-8"
-  //           color="dark:text-violet-400"
-  //         />
-
-  //         <HighlightedText
-  //           text={data.description}
-  //           tag="p"
-  //           className="tmt-6 mb-8 text-lg sm:mb-12"
-  //           color="dark:text-violet-400"
-  //         />
-  //         <div className="flex flex-col space-y-4 sm:items-center sm:justify-center sm:flex-row sm:space-y-0 sm:space-x-4 lg:justify-start">
-  //           {data.buttons.map((button: Button, index: number) => (
-  //             <Link
-  //               key={index}
-  //               href={button.url}
-  //               target={button.newTab ? '_blank' : '_self'}
-  //               className={renderButtonStyle(button.type)}
-  //             >
-  //               {button.text}
-  //             </Link>
-  //           ))}
-  //         </div>
-  //       </div>
-  //       <div className="flex items-center justify-center p-6 mt-8 lg:mt-0 h-72 sm:h-80 lg:h-96 xl:h-112 2xl:h-128">
-  //         <Image
-  //           src={imgUrl || ''}
-  //           alt={data.picture.data.attributes.alternativeText || 'none provided'}
-  //           className="object-contain h-72 sm:h-80 lg:h-96 xl:h-112 2xl:h-128 "
-  //           width={600}
-  //           height={600}
-  //         />
-  //       </div>
-  //     </div>
-  //   </section>
-  // );
 }

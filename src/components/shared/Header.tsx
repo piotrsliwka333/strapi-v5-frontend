@@ -1,13 +1,12 @@
 'use client';
 
+import { HttpClient } from '@/api/HttpClient';
+import LocaleSwitcher from '@/components/LocaleSwitcher';
 import { Link } from '@/i18n/routing';
 import { Header as HeaderResponseType } from '@/models/Header';
-import Image from 'next/image';
-import { useState } from 'react';
-import LocaleSwitcher from '@/components/LocaleSwitcher';
-import { HttpClient } from '@/api/HttpClient';
-import { MainLink } from '@/models/common/MainLink';
 import { Link as LinkType } from '@/models/common/Link';
+import { MainLink } from '@/models/common/MainLink';
+import { useState } from 'react';
 
 interface OwnProps {
   header: HeaderResponseType;
@@ -27,13 +26,18 @@ export function Header({ header }: Readonly<OwnProps>) {
         <div className="w-full mx-auto px-1 sm:px-2 flex items-center justify-between h-full xl:hidden">
           <div className="flex items-center gap-16 h-full">
             <Link href="/" className="py-2 flex h-full">
-              <Image
+              {/* <Image
                 priority
                 src={HttpClient.getStrapiMedia(header.logo.image.url)}
                 alt={header.logo.text}
                 width={0}
                 height={0}
                 sizes="100vw"
+                className="h-full w-auto"
+              /> */}
+              <img
+                src={HttpClient.getStrapiMedia(header.logo.image.url)}
+                alt={header.logo.image.alternativeText || 'not provided'}
                 className="h-full w-auto"
               />
             </Link>
@@ -129,13 +133,18 @@ export function Header({ header }: Readonly<OwnProps>) {
         <div className="hidden xl:flex w-full mx-auto max-w-[1544px] px-2 2xl:px-4 flex items-center justify-between relative h-full">
           <div className="flex items-center gap-16 h-full">
             <Link href="/" className="py-2 flex h-full">
-              <Image
+              {/* <Image
                 priority
                 src={HttpClient.getStrapiMedia(header.logo.image.url)}
                 alt={header.logo.text}
                 width={0}
                 height={0}
                 sizes="100vw"
+                className="h-full w-auto"
+              /> */}
+              <img
+                src={HttpClient.getStrapiMedia(header.logo.image.url)}
+                alt={header.logo.image.alternativeText || 'not provided'}
                 className="h-full w-auto"
               />
             </Link>
@@ -223,30 +232,4 @@ export function Header({ header }: Readonly<OwnProps>) {
       </header>
     </div>
   );
-  // return (
-  //   <div className="flex items-center justify-between px-4 py-3 bg-white shadow-md dark:bg-gray-800">
-  //     <div className="flex items-center gap-4">
-  //       {user.ok ? (
-  //         <div className="flex items-center gap-4">
-  //           <Link href="/dashboard">Dashboard</Link>
-  //           <Link href="/">Home</Link>
-  //           <Link href="/pricing">Pricing</Link>
-  //           <Link href="/blog">Blog</Link>
-  //           <LoggedInUser userData={user.data} />
-  //           <LocaleSwitcher />
-  //         </div>
-  //       ) : (
-  //         <div className="flex items-center gap-4">
-  //           <Link href="/">Home</Link>
-  //           <Link href="/pricing">Pricing</Link>
-  //           <Link href="/blog">Blog</Link>
-  //           <Link href="/signin">Sign In</Link>
-  //           <Link href="/signup">Sign Up</Link>
-  //           <Link href="/dashboard">Dashboard</Link>
-  //           <LocaleSwitcher />
-  //         </div>
-  //       )}
-  //     </div>
-  //   </div>
-  // );
 }

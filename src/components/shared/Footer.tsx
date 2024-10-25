@@ -1,11 +1,10 @@
 import { HttpClient } from '@/api/HttpClient';
-import { Footer as FooterType, SocialLink, SocialLinkOption } from '@/models/Footer';
-import Image from 'next/image';
-import { Newsletter } from '../Newsletter';
-import { Image as ImageType } from '@/models/common/Image';
-import { MainLink } from '@/models/common/MainLink';
 import { Link } from '@/i18n/routing';
+import { Footer as FooterType, SocialLink, SocialLinkOption } from '@/models/Footer';
+import { Image as ImageType } from '@/models/common/Image';
 import { Link as LinkType } from '@/models/common/Link';
+import { MainLink } from '@/models/common/MainLink';
+import { Newsletter } from '../Newsletter';
 
 interface OwnProps {
   footer: FooterType;
@@ -22,13 +21,18 @@ export function Footer({ footer }: Readonly<OwnProps>) {
           <ul className="flex gap-4">
             {footer.brandLogos.map((brandLogo: ImageType) => (
               <li key={brandLogo.id}>
-                <Image
+                {/* <Image
                   priority
                   src={HttpClient.getStrapiMedia(brandLogo.url)}
                   alt={brandLogo.alternativeText || 'none provided'}
                   width={0}
                   height={0}
                   sizes="100vw"
+                  className="w-[95px] h-[95px]"
+                /> */}
+                <img
+                  src={HttpClient.getStrapiMedia(brandLogo.url)}
+                  alt={brandLogo.alternativeText || 'none provided'}
                   className="w-[95px] h-[95px]"
                 />
               </li>
