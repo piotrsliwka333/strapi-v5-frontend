@@ -63,11 +63,11 @@ export async function generateMetadata({
           title: facebookSeo.title,
           description: facebookSeo.description,
           url: HttpClient.getStrapiURL(`/${slugFromResponse}`),
-          images: [
+          images: facebookSeo.image ? [
             {
               url: HttpClient.getStrapiMedia(facebookSeo.image.url),
             },
-          ],
+          ] : [],
           locale: locale,
           type: 'website',
         }
@@ -86,7 +86,7 @@ export async function generateMetadata({
           card: 'summary_large_image',
           title: xSeo.title,
           description: xSeo.description,
-          images: [HttpClient.getStrapiMedia(xSeo.image.url)],
+          images: xSeo.image ? [HttpClient.getStrapiMedia(xSeo.image.url)] : [],
         }
       : {},
   };
