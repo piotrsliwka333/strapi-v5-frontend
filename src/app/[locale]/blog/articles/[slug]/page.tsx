@@ -117,11 +117,11 @@ export async function generateMetadata({
           url: HttpClient.getStrapiURL(`/blog/articles/${slug}`),
           type: 'article',
           publishedTime: publishedAt,
-          images: [
+          images: facebookSeo.image ? [
             {
               url: HttpClient.getStrapiMedia(facebookSeo.image.url),
             },
-          ],
+          ] : [],
           locale: locale,
         }
       : {},
@@ -130,7 +130,7 @@ export async function generateMetadata({
           card: 'summary_large_image',
           title: xSeo.title,
           description: xSeo.description,
-          images: [HttpClient.getStrapiMedia(xSeo.image.url)],
+          images: xSeo.image ? [HttpClient.getStrapiMedia(xSeo.image.url)] : [],
         }
       : {},
   };

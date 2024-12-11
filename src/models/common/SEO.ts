@@ -9,7 +9,7 @@ export interface MetaSocial {
   socialNetwork: MetaSocialNetwork;
   title: string;
   description: string;
-  image: Image;
+  image: Image | null;
 }
 
 export interface SEO {
