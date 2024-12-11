@@ -4,13 +4,9 @@ export default function robots(): MetadataRoute.Robots {
   return {
     rules: [
       {
-        userAgent: 'Googlebot',
+        userAgent: ['Googlebot','Applebot', 'Bingbot'],
         allow: ['/'],
-        disallow: '/private/',
-      },
-      {
-        userAgent: ['Applebot', 'Bingbot'],
-        disallow: ['/'],
+        disallow: ['/private/', '/_next/'],
       },
     ],
     sitemap: 'https://www.test1020.xyz/sitemap.xml',
