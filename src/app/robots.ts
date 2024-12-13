@@ -9,6 +9,6 @@ export default function robots(): MetadataRoute.Robots {
         disallow: ['/private/', '/_next/'],
       },
     ],
-    sitemap: 'https://test1020.xyz/sitemap2.xml',
+    sitemap: 'https://www.test1020.xyz/sitemap2.xml',
   };
 }
