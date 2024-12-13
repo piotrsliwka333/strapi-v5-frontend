@@ -19,6 +19,30 @@ export const routing = defineRouting({
       en: '/about-us',
       pl: '/o-nas',
     },
+    '/employee-engagement-and-culture': {
+      en: '/employee-engagement-and-culture',
+      pl: '/zaangazowanie-pracownikow-i-kultura'
+    },
+    '/assessment-credentials': {
+      en: '/assessment-credentials',
+      pl: '/ocena-poswiadczenia'
+    },
+    '/business-mastery-solutions': {
+      en: '/business-mastery-solutions',
+      pl: '/rozwiazania-do-opanowania-biznesu'
+    },
+    '/work-life-coaching': {
+      en: '/work-life-coaching',
+      pl: '/coaching-zawodowo-zyciowy'
+    },
+    '/integrated-learning': {
+      en: '/integrated-learning',
+      pl: '/zintegrowane-nauczanie'
+    },
+    '/business-re-education': {
+      en: '/business-re-education',
+      pl: '/reedukacja-biznesowa'
+    },
     '/blog': {
       en: '/blog',
       pl: '/blog',
